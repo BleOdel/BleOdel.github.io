@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Detecting Cybersecurity Threats in VR — Blessing Odeleye</title>
+<meta name="description" content="Doctoral research on detecting cybersecurity threats in virtual reality environments — a new attack, a modular testbed, a practical IDS, and a security taxonomy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="mark" href="../index.html"><span class="dot"></span>BLESSING ODELEYE</a>
+  <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
+  <div class="navlinks" id="primary-nav" data-nav-menu>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#research">Research</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="project-hero">
+  <div class="page">
+    <a class="back-link" href="../index.html#work">&larr; All work</a>
+    <p class="eyebrow">PhD research &middot; University of Greenwich, 2019&ndash;2025</p>
+    <h1>Detecting Cybersecurity Threats in Virtual Reality</h1>
+    <p class="question">Can a cyberattack against VR be detected from the behaviour of the system itself?</p>
+    <p class="summary">Doctoral research combining a custom-built VR testbed, a novel GPU-based cyber attack, and an unsupervised machine-learning intrusion detection system &mdash; the first practical step toward reactive VR security defences, where prevention alone is insufficient.</p>
+    <div class="project-meta">
+      <span><strong>Thesis:</strong> Addressing Cyber Security Threats in Virtual Reality Environments (2024)</span>
+      <span><strong>Supervisors:</strong> Prof. Georgios Loukas, Dr Georgia Sakellari, Dr Ryan Heartfield</span>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA: 10-30s muted loop of the VR experimental environment and framerate-attack behaviour, per XR Video Strategy (creative brief §07) -->
+
+<section class="project-section">
+  <div class="page">
+    <h2>The problem</h2>
+    <p>VR security research had focused almost entirely on prevention &mdash; risk assessment and authentication &mdash; with no consideration for what happens when prevention fails or a threat is entirely new. Head-mounted displays compound the problem: they isolate users from real-world cues (network state, CPU usage, unfamiliar processes) that would normally hint at a compromise.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Four contributions</h2>
+    <div class="story-strip reveal">
+      <span>New attack</span><span class="arrow">&rarr;</span>
+      <span>Modular testbed</span><span class="arrow">&rarr;</span>
+      <span>Practical IDS</span><span class="arrow">&rarr;</span>
+      <span>Security taxonomy</span>
+    </div>
+    <p>A GPU-based attack that induces VR sickness on demand by manipulating frame rate; a custom-built, modular VR testbed designed specifically to carry out that attack and observe user reactions to real-time warnings; an Isolation Forest-based intrusion detection system &mdash; the first practical IDS for VR &mdash; that gives early warning before an attack significantly impacts the user; and a systematic taxonomy of VR cybersecurity challenges (see <a href="taxonomy.html" style="color:var(--cyan)">VR Cybersecurity Taxonomy</a>) that helped identify where this reactive-defence gap sat in the field.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Where it led</h2>
+    <p>The testbed, telemetry pipeline and detection approach developed here became the technical foundation for two follow-on projects: the Horizon Europe <a href="sun.html" style="color:var(--cyan)">SUN</a> consortium, which extended the IDS into healthcare and manufacturing demonstrators, and the deeper feature-engineering and evaluation work covered in <a href="intrusion-detection.html" style="color:var(--cyan)">Telemetry-Driven XR Intrusion Detection</a> and <a href="human-impact.html" style="color:var(--cyan)">Cyber-Physical Impact of VR Attacks</a>.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <span>&copy; 2026 Blessing Odeleye</span>
+  <div class="footer-links">
+    <a href="https://github.com/BleOdel" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/blessingodeleye" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:blessingodeleye@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

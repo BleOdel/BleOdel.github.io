@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber-Physical Impact of VR Attacks — Blessing Odeleye</title>
+<meta name="description" content="A 48-participant study linking GPU-based framerate attacks to measured VR sickness and evaluating an in-headset security warning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="mark" href="../index.html"><span class="dot"></span>BLESSING ODELEYE</a>
+  <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
+  <div class="navlinks" id="primary-nav" data-nav-menu>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#research">Research</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="project-hero">
+  <div class="page">
+    <a class="back-link" href="../index.html#work">&larr; All work</a>
+    <p class="eyebrow">Human factors &middot; VR4Sec Workshop, USENIX SOUPS 2021</p>
+    <h1>Cyber-Physical Impact of VR Attacks</h1>
+    <p class="question">What happens when a cyberattack affects both a machine and the person inside the experience?</p>
+    <p class="summary">A controlled 48-participant study linking framerate degradation from a GPU-based cyberattack to measured VR sickness and user comfort, and evaluating whether an in-headset security warning is accepted without breaking immersion.</p>
+  </div>
+</section>
+
+<!-- MEDIA: 10-30s muted loop of the in-headset security warning mechanism, per XR Video Strategy (creative brief §07) -->
+
+<section class="project-section">
+  <div class="page">
+    <h2>Two attacks, one goal</h2>
+    <p>A GPU-based attack used a custom C++ malware (delivered as if via a post-exploitation tool such as Meterpreter) that overwhelmed the GPU with long-running OpenGL tasks, hidden from the user, at four configurable intensities. A network-based attack flooded the target with continuous ICMP echo requests &mdash; a simple denial-of-service pattern &mdash; to disrupt a collaborative VR session over Photon PUN2 networking. Both attacks share the same goal: degrade frame rate enough to cause visual discomfort, screen tearing, and eventually VR sickness.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>The study</h2>
+    <p>48 participants experienced the induced framerate attack while their telemetry and Virtual Reality Sickness Questionnaire (VRSQ) responses were recorded, using Python and SPSS for both descriptive and inferential statistical analysis of symptom severity.</p>
+    <div class="story-strip reveal">
+      <span>Attack</span><span class="arrow">&rarr;</span>
+      <span>XR environment</span><span class="arrow">&rarr;</span>
+      <span>Telemetry</span><span class="arrow">&rarr;</span>
+      <span style="color:var(--cyan)">User warning</span>
+    </div>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>In-headset warning design</h2>
+    <p>An unobtrusive in-headset threat-visualisation mechanism was designed and evaluated against a security-warning-design framework, aiming to communicate an active attack to the user without breaking immersion or presence. Participants rated the warning on clarity, timeliness, and whether they understood what action to take &mdash; feeding directly into the reactive-defence design used across the <a href="intrusion-detection.html" style="color:var(--cyan)">intrusion detection</a> and <a href="sun.html" style="color:var(--cyan)">SUN</a> work.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <span>&copy; 2026 Blessing Odeleye</span>
+  <div class="footer-links">
+    <a href="https://github.com/BleOdel" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/blessingodeleye" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:blessingodeleye@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

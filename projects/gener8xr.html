@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gener8XR: Applied Mixed-Reality Platform Engineering — Blessing Odeleye</title>
+<meta name="description" content="An Innovate UK KTP building the Gener8XR mixed-reality platform — spatial anchoring, HTTP/WebSocket bridging, and a reusable XR development blueprint.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="mark" href="../index.html"><span class="dot"></span>BLESSING ODELEYE</a>
+  <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
+  <div class="navlinks" id="primary-nav" data-nav-menu>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#research">Research</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="project-hero">
+  <div class="page">
+    <a class="back-link" href="../index.html#work">&larr; All work</a>
+    <p class="eyebrow">Innovate UK KTP &middot; Gener8 Spaces Ltd &amp; Edge Hill University, 2024&ndash;Present</p>
+    <h1>Gener8XR: Applied Mixed-Reality Platform Engineering</h1>
+    <p class="question">How do you turn experimental immersive technology into a reusable, maintainable platform?</p>
+    <p class="summary">A production mixed-reality platform unifying room-scale CAVE projection systems with Quest 3-based MR, built as the sole XR Solutions Developer on a 32-month Innovate UK Knowledge Transfer Partnership.</p>
+    <div class="project-meta">
+      <span><strong>Funded value:</strong> &pound;205,332</span>
+      <span><strong>Stack:</strong> Unity &middot; C# &middot; OpenXR &middot; Photon &middot; Quest 3 &middot; Spatial anchors</span>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA: 10-30s muted loop of the Quest 3 mixed-reality environment, spatial anchoring/colocation, and radial/wrist UI, per XR Video Strategy (creative brief §07) -->
+
+<section class="project-section">
+  <div class="page">
+    <h2>Spatial anchoring and persistence</h2>
+    <p>A shared spatial anchoring and persistence system for colocated MR sessions achieves sub-15cm drift detection with automatic realignment, incorporating pose stabilisation and world-anchored scene restoration across users, sessions and devices &mdash; the core technical challenge in keeping multiple headsets agreeing on where virtual objects sit in physical space.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Bridging Unity and non-technical tools</h2>
+    <p>A bidirectional interoperability layer connects Unity MR scenes to the Intuiface platform using a custom HTTP command API and WebSocket event broadcasting, enabling non-technical users to control live 3D scene content in real time &mdash; letting Gener8's own staff operate the platform without touching Unity directly.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Interaction design and reusable engineering</h2>
+    <p>Core interactive interfaces &mdash; radial context menus, wrist-mounted controls, and world-anchored panels &mdash; were designed for spatial usability and clarity in shared MR environments, informed directly by the security-warning and cognitive-load insights from the <a href="human-impact.html" style="color:var(--cyan)">human-impact</a> study. A reusable XR development blueprint standardises C# patterns, prefabs and modular architecture, reducing future development cycles and establishing a product-delivery framework that outlives the KTP itself.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Requirements and knowledge transfer</h2>
+    <p>Stakeholder discovery and user surveys were translated into a formal Software Requirements Specification (SRS) and Agile user stories, directly driving the UX design and development roadmap. Documentation and internal workshops upskilled non-technical staff on deploying, configuring and operating the platform in educational settings.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <span>&copy; 2026 Blessing Odeleye</span>
+  <div class="footer-links">
+    <a href="https://github.com/BleOdel" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/blessingodeleye" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:blessingodeleye@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

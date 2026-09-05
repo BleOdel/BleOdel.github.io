@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Research Assistant — Blessing Odeleye</title>
+<title>AI Research Assistant · Blessing Odeleye</title>
 <meta name="description" content="An agentic Claude Code framework for literature discovery and synthesis, with a strict rule: every claim traces to a source actually fetched during the run.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
     <a class="back-link" href="../index.html#work">&larr; All work</a>
     <p class="eyebrow">Personal project &middot; Built on Claude Code, Aug 2026</p>
     <h1>AI Research Assistant</h1>
-    <p class="question">Can an agentic workflow make literature synthesis trustworthy enough to cite &mdash; one fetched source at a time?</p>
+    <p class="question">Can an agentic workflow make literature synthesis trustworthy enough to cite, one fetched source at a time?</p>
     <p class="summary">A structured research framework built on Claude Code that turns literature discovery and synthesis into a repeatable pipeline: search academic databases in parallel, score every source against a fixed rubric, draft a cited report, and have a second agent fact-check every citation before anything compiles.</p>
     <div class="project-meta">
       <span><strong>Stack:</strong> TypeScript &middot; Bun &middot; LaTeX/BibTeX &middot; Claude Code skills</span>
@@ -50,14 +50,14 @@
       <span>Fact-checked</span><span class="arrow">&rarr;</span>
       <span class="text-cyan">Cited PDF</span>
     </div>
-    <p>A blog post and a peer-reviewed paper are different kinds of evidence. Merging them into one pipeline would let an unsourced claim sit beside a replicated result with nothing marking the difference &mdash; so each track keeps its own state, its own rubric, and its own output format.</p>
+    <p>A blog post and a peer-reviewed paper are different kinds of evidence. Merging them into one pipeline would let an unsourced claim sit beside a replicated result with nothing marking the difference. So each track keeps its own state, its own rubric, and its own output format.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
     <h2>The rule everything else follows from</h2>
-    <p>Every claim traces to a source that was actually fetched during the run. A citation that can't be verified against fetched content is treated as a defect, not a stylistic nitpick &mdash; the same evidence-first discipline this site's own project pages are held to. A dedicated reviewer agent checks every citation in a drafted report against the source's real content (full text where open access, via a dedicated paper-fetch tool), separately from the agent that wrote the draft.</p>
+    <p>Every claim traces to a source that was actually fetched during the run. A citation that can't be verified against fetched content is treated as a defect, not a stylistic nitpick. A dedicated reviewer agent checks every citation in a drafted report against the source's real content (full text where open access, via a dedicated paper-fetch tool), separately from the agent that wrote the draft.</p>
   </div>
 </section>
 
@@ -65,14 +65,14 @@
   <div class="page">
     <h2>From discovery to a defensible report</h2>
     <p><code>/setup</code> builds a researcher profile from a CV, a reading list, or an interview. <code>/research &lt;topic&gt;</code> searches the connector CLIs in parallel and deduplicates against prior runs. <code>/rank</code> batch-scores a large haul into a shortlist before committing to a full pass. <code>/synthesize &lt;topic&gt;</code> runs the complete drafter-reviewer workflow through to a compiled, verified PDF.</p>
-    <p>Later commands extend the loop past a single report: <code>/update</code> keeps an existing report current as a living document, <code>/outcome</code> tracks what happened after a synthesis was used, <code>/defend</code> preps a presentation from one, and <code>/gaps</code> reasons across every report on file rather than one at a time. <code>/add-source</code> and <code>/add-template</code> extend the framework itself &mdash; a new database connector or a custom LaTeX report format (a thesis chapter, a conference layout) &mdash; without touching the core pipeline.</p>
+    <p>Later commands extend the loop past a single report: <code>/update</code> keeps an existing report current as a living document, <code>/outcome</code> tracks what happened after a synthesis was used, <code>/defend</code> preps a presentation from one, and <code>/gaps</code> reasons across every report on file rather than one at a time. <code>/add-source</code> and <code>/add-template</code> extend the framework itself, adding a new database connector or a custom LaTeX report format (a thesis chapter, a conference layout), without touching the core pipeline.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
     <h2>Why it matters</h2>
-    <p>Literature review is exactly the kind of task where an LLM's fluency is a liability if nothing constrains it &mdash; a plausible-sounding citation is easy to generate and expensive to catch. Building the fact-checking pass as a separate agent, and the evidence rule as a first-class constraint rather than a prompt suggestion, is the same instinct behind the intrusion-detection and taxonomy work: don't trust a system's output until something independent has checked it against the real evidence.</p>
+    <p>Literature review is exactly the kind of task where an LLM's fluency is a liability if nothing constrains it. A plausible-sounding citation is easy to generate and expensive to catch. Building the fact-checking pass as a separate agent, and the evidence rule as a hard constraint rather than a prompt suggestion, follows the same approach as the intrusion-detection and taxonomy work: don't trust a system's output until something independent has checked it against the evidence.</p>
   </div>
 </section>
 </main>

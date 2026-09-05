@@ -198,8 +198,8 @@ p.section-lede{
 .headline-row{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:clamp(8px,1.2vw,16px);
+  justify-content:flex-start;
+  gap:clamp(24px,4vw,64px);
   margin-bottom:26px;
 }
 @media (max-width:900px){

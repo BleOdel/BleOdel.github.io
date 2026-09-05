@@ -167,18 +167,26 @@ p.section-lede{
 }
 
 /* ---------- hero ---------- */
-/* Two columns sized to their content: the text column and the image sit
-   next to each other rather than being pushed to opposite edges, and the
-   grid guarantees the image can never overlap the copy at any width. */
+/* Column 1 holds the copy, one grid row per element; column 2 holds the
+   image, anchored to the headline's row so it sits directly beside it and
+   then extends down past the lede. Because each text row is sized by its
+   own content, the tall image never opens a gap under the headline, and
+   the two columns can't overlap at any width. */
 .hero{
   padding:clamp(40px,7vw,88px) 0 clamp(40px,6vw,72px);
   position:relative;
   display:grid;
   grid-template-columns:minmax(0,auto) auto;
+  grid-template-rows:auto auto auto auto auto;
   justify-content:start;
-  align-items:center;
-  gap:clamp(24px,4vw,64px);
+  column-gap:clamp(24px,4vw,64px);
 }
+.hero > .eyebrow{grid-column:1; grid-row:1;}
+.hero > h1.statement{grid-column:1; grid-row:2;}
+.hero > .lede{grid-column:1; grid-row:3;}
+.hero > .ctas{grid-column:1; grid-row:4;}
+.hero > .utility{grid-column:1; grid-row:5;}
+.hero > .hero-mark{grid-column:2; grid-row:2 / -1; align-self:start;}
 .hero .eyebrow{
   font-size:13.5px;
   font-weight:500;
@@ -191,8 +199,16 @@ p.section-lede{
 .hero .eyebrow .sep{color:var(--muted-dim);}
 
 @media (max-width:900px){
-  .hero{grid-template-columns:1fr;}
-  .hero-mark{order:-1; margin:0 0 28px; max-width:360px; width:100%;}
+  /* Single column: everything flows in source order — eyebrow, headline,
+     image, lede — so the visual still sits directly under the headline. */
+  .hero{grid-template-columns:1fr; grid-template-rows:none;}
+  .hero > .eyebrow,
+  .hero > h1.statement,
+  .hero > .lede,
+  .hero > .ctas,
+  .hero > .utility,
+  .hero > .hero-mark{grid-column:1; grid-row:auto;}
+  .hero-mark{margin:4px 0 32px; max-width:360px; width:100%;}
 }
 
 h1.statement{

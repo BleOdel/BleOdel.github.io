@@ -248,7 +248,7 @@ p.lede{
 .utility a{color:var(--muted); text-decoration:none; border-bottom:1px solid transparent;}
 .utility a:hover, .utility a:focus-visible{color:var(--text); border-bottom-color:var(--cyan);}
 
-.hero-mark{width:clamp(320px,38vw,520px);}
+.hero-mark{width:clamp(360px,46vw,680px);}
 .hero-mark img{width:100%;height:auto;display:block;}
 
 @media (prefers-reduced-motion:no-preference){

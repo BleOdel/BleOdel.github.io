@@ -167,9 +167,17 @@ p.section-lede{
 }
 
 /* ---------- hero ---------- */
+/* Two columns sized to their content: the text column and the image sit
+   next to each other rather than being pushed to opposite edges, and the
+   grid guarantees the image can never overlap the copy at any width. */
 .hero{
   padding:clamp(40px,7vw,88px) 0 clamp(40px,6vw,72px);
   position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,auto) auto;
+  justify-content:start;
+  align-items:center;
+  gap:clamp(24px,4vw,64px);
 }
 .hero .eyebrow{
   font-size:13.5px;
@@ -182,16 +190,9 @@ p.section-lede{
 .hero .eyebrow .name{color:var(--text);font-weight:600; margin-right:10px;}
 .hero .eyebrow .sep{color:var(--muted-dim);}
 
-.headline-row{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  gap:clamp(24px,4vw,64px);
-  margin-bottom:26px;
-}
 @media (max-width:900px){
-  .headline-row{flex-wrap:wrap-reverse;}
-  .hero-mark{margin:0 0 28px; max-width:360px; width:100%;}
+  .hero{grid-template-columns:1fr;}
+  .hero-mark{order:-1; margin:0 0 28px; max-width:360px; width:100%;}
 }
 
 h1.statement{
@@ -200,11 +201,9 @@ h1.statement{
   font-size:clamp(32px,3.6vw,50px);
   line-height:1.14;
   letter-spacing:-0.01em;
-  margin:0;
+  margin:0 0 26px;
   max-width:13ch;
   text-wrap:balance;
-  flex:1 1 auto;
-  min-width:0;
 }
 h1.statement em{font-style:normal; color:var(--cyan);}
 
@@ -222,7 +221,7 @@ p.lede{
 .utility a{color:var(--muted); text-decoration:none; border-bottom:1px solid transparent;}
 .utility a:hover, .utility a:focus-visible{color:var(--text); border-bottom-color:var(--cyan);}
 
-.hero-mark{width:clamp(320px,38vw,520px); flex:none;}
+.hero-mark{width:clamp(320px,38vw,520px);}
 .hero-mark img{width:100%;height:auto;display:block;}
 
 @media (prefers-reduced-motion:no-preference){

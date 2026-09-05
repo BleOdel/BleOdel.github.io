@@ -146,6 +146,7 @@ footer.site-footer a:hover, footer.site-footer a:focus-visible{color:var(--text)
 /* ---------- section scaffolding ---------- */
 section{padding:clamp(56px,8vw,96px) 0;}
 section + section{border-top:1px solid var(--line);}
+.hero-section{padding:0;}
 .eyebrow{
   font-family:'Space Grotesk',sans-serif;
   font-size:13.5px;

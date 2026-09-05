@@ -190,12 +190,8 @@ p.section-lede{
   color:var(--muted);
   text-transform:none;
   margin:0 0 22px;
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-  flex-wrap:wrap;
 }
-.hero .eyebrow .name{color:var(--text);font-weight:600;}
+.hero .eyebrow .name{color:var(--text);font-weight:600; margin-right:10px;}
 .hero .eyebrow .sep{color:var(--muted-dim);}
 
 .headline-row{

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Telemetry-Driven XR Intrusion Detection · Blessing Odeleye</title>
-<meta name="description" content="A telemetry-based intrusion detection system for VR using PCA feature reduction and an Isolation Forest model, achieving ~99% F1 with 0-2s detection latency.">
+<meta name="description" content="A telemetry-based intrusion detection system for VR using PCA feature reduction and an Isolation Forest model, reporting 0.97-0.99 F1 and 2-9s detection latency across four tested attack intensities.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,17 +35,27 @@
     <p class="summary">A telemetry-based intrusion detection system using more than 20 engineered features, PCA dimensionality reduction, and unsupervised anomaly detection across roughly 580,000 time-series windows of VR sensor data.</p>
     <div class="project-meta">
       <span><strong>Model:</strong> Isolation Forest (benchmarked against One-Class SVM, LOF, Elliptic Envelope)</span>
-      <span><strong>Result:</strong> &asymp;99% F1, 0&ndash;2s detection latency</span>
+      <span><strong>Result:</strong> 0.97&ndash;0.99 F1; 2&ndash;9s latency across four tested intensities</span>
     </div>
   </div>
 </section>
 
-<!-- MEDIA: 10-30s muted loop of the telemetry/IDS detection sequence, per XR Video Strategy (creative brief §07) -->
+<section class="project-section" aria-labelledby="demo-title">
+  <div class="page">
+    <!-- Replace this placeholder with a captioned video when the demo is ready. -->
+    <div class="media-placeholder">
+      <span class="status-label">Demo &middot; Coming soon</span>
+      <h2 id="demo-title">Threat detection demo</h2>
+      <p>A short walkthrough of telemetry capture, anomalous behaviour and the detection warning.</p>
+      <p class="placeholder-note">The video is not available yet.</p>
+    </div>
+  </div>
+</section>
 
 <section class="project-section">
   <div class="page">
     <h2>The pipeline</h2>
-    <p>A telemetry feature pipeline extracts more than 20 real-time signals from the VR session: frame duration statistics, framerate entropy, Head Rotation Interval (HRI) metrics, and quaternion/Euler pose data. Those run across roughly 580,000 time-series windows. Principal Component Analysis reduces this to a compact 5-feature representation optimised for low-latency inference, which an Isolation Forest model classifies as normal or anomalous using a two-second sliding window.</p>
+    <p>A telemetry feature pipeline extracts more than 20 real-time signals from the VR session: frame duration statistics, framerate entropy, Head Rotation Interval (HRI) metrics, and quaternion/Euler pose data. Those run across roughly 580,000 time-series windows. Principal Component Analysis reduces this to a compact representation of five principal components optimised for low-latency inference, which an Isolation Forest model classifies as normal or anomalous using a two-second sliding window.</p>
     <div class="story-strip reveal">
       <span>Normal</span><span class="arrow">&rarr;</span>
       <span class="text-violet">Anomalous</span><span class="arrow">&rarr;</span>
@@ -56,8 +66,8 @@
 
 <section class="project-section">
   <div class="page">
-    <h2>Detection latency by attack intensity</h2>
-    <p>Evaluated against four GPU-based framerate attacks of increasing intensity (larger malicious image payloads loaded into the GPU), requiring a rule of two consecutive anomalous windows before raising a warning. That choice eliminated false positives at the cost of roughly one extra second of delay.</p>
+    <h2 id="evaluation">Detection latency by attack intensity</h2>
+    <p>Evaluated against four GPU-based framerate attacks of increasing intensity (larger malicious image payloads loaded into the GPU), requiring a rule of two consecutive anomalous windows before raising a warning. In this evaluation, that choice eliminated observed false positives at the cost of roughly one extra second of delay.</p>
     <div class="svg-diagram reveal">
       <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of detection latency in seconds across four GPU attack intensities: 542 kilobytes at 9 seconds, 1.06 megabytes at 3 seconds, 1.82 megabytes at 2 seconds, 3.13 megabytes at 4 seconds.">
         <g font-family="Inter" font-size="11" fill="#9aa7c2">
@@ -80,7 +90,7 @@
         </g>
       </svg>
     </div>
-    <p>Detection accuracy stayed between 0.97 and 0.99 F1 across all four intensities, with the 1.82MB attack, the fastest to detect, forming the basis of the ≈99% F1 / 0&ndash;2s headline figure.</p>
+    <p>F1 scores ranged from 0.97 to 0.99 across the four tested intensities. The reported detection latencies were 9, 3, 2 and 4 seconds respectively. The fastest result, 2 seconds, was observed for the 1.82 MB attack. These results describe controlled experiments, rather than a latency guarantee for other systems or attacks.</p>
   </div>
 </section>
 
@@ -104,3 +114,4 @@
 <script src="../script.js"></script>
 </body>
 </html>
+

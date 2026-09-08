@@ -42,110 +42,90 @@
         <a class="btn btn-primary" href="#work">Explore My Work
           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="#04121c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn-secondary" href="#research">View Research</a>
+        <button class="btn btn-secondary" type="button" disabled>Download CV <span class="status-label">Coming soon</span></button>
       </div>
       <div class="utility">
         <a href="https://github.com/BleOdel" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/blessingodeleye" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#about">Publications</a>
+        <a href="#publications">Publications</a>
       </div>
     </div>
   </div>
   <ul class="evidence page">
     <li><span class="num"><span class="accent">580K+</span></span><span class="label">VR telemetry windows analysed</span></li>
-    <li><span class="num">20+&nbsp;&rarr;&nbsp;5</span><span class="label">Engineered features via PCA</span></li>
-    <li><span class="num">&asymp;99%</span><span class="label">F1 score, Isolation Forest IDS</span></li>
-    <li><span class="num">0&ndash;2 sec</span><span class="label">Detection latency</span></li>
+    <li><span class="num">20+&nbsp;&rarr;&nbsp;5</span><span class="label">Features reduced to 5 PCA components</span></li>
+    <li><span class="num">0.97&ndash;0.99</span><span class="label">F1 across four tested attack intensities</span></li>
+    <li><span class="num">2&ndash;9 sec</span><span class="label">Reported detection latency across four intensities</span></li>
     <li><span class="num">48</span><span class="label">Study participants (VRSQ)</span></li>
   </ul>
+  <p class="evidence-note page">Results from controlled VR experiments; performance varies with attack intensity. <a href="projects/intrusion-detection.html#evaluation">View evaluation details</a>.</p>
 </section>
 
-<section id="cycle">
+<section id="work">
   <div class="page">
-    <p class="eyebrow">How the work moves</p>
-    <h2 class="section-title">A repeatable research-and-engineering cycle</h2>
-    <p class="section-lede">Every project on this site moves through the same five stages: understand the problem, build the environment to study it, reproduce the failure under controlled conditions, capture the evidence, and turn that evidence into a defence.</p>
+    <p class="eyebrow">Featured work</p>
+    <h2 class="section-title">Security research, engineering and AI tooling</h2>
+    <p class="section-lede">Selected work showing how I investigate threats, build usable platforms, and make research workflows easier to verify.</p>
+    <div class="work-grid">
+      <a class="work-card reveal" href="projects/intrusion-detection.html">
+        <p class="kicker">Machine learning &middot; IDS</p>
+        <h3>Telemetry-Driven XR Intrusion Detection</h3>
+        <p>Built a telemetry pipeline and evaluated an Isolation Forest detector across four VR attack intensities, reporting 0.97–0.99 F1.</p>
+        <span class="card-link">Read case study &rarr;</span>
+      </a>
+      <a class="work-card reveal" href="projects/gener8xr.html">
+        <p class="kicker">Innovate UK KTP &middot; Gener8XR</p>
+        <h3>Applied Mixed-Reality Platform Engineering</h3>
+        <p>Built mixed-reality interfaces and an HTTP/WebSocket control layer connecting Unity scenes to tools used by non-technical staff.</p>
+        <span class="card-link">Read case study &rarr;</span>
+      </a>
+      <a class="work-card reveal" href="projects/ai-research-assistant.html">
+        <p class="kicker">Personal project &middot; Built on Claude Code</p>
+        <h3>AI Research Assistant</h3>
+        <p>Built a Claude Code research workflow that traces citations to fetched sources and separates drafting from citation review.</p>
+        <span class="card-link">Read case study &rarr;</span>
+      </a>
+    </div>
+    <details class="additional-work">
+      <summary>More research projects <span class="status-label">4 case studies</span></summary>
+      <div class="work-grid">
+      <a class="work-card" href="projects/taxonomy.html">
+        <p class="kicker">Research &middot; Computers &amp; Security</p>
+        <h3>VR Cybersecurity Taxonomy</h3>
+        <p>How should researchers systematically reason about security and privacy threats in immersive environments?</p>
+      </a>
+      <a class="work-card" href="projects/vr-security.html">
+        <p class="kicker">PhD research</p>
+        <h3>Detecting Cybersecurity Threats in VR</h3>
+        <p>Can a cyberattack against VR be detected from the behaviour of the system itself?</p>
+      </a>
+      <a class="work-card" href="projects/human-impact.html">
+        <p class="kicker">Human factors &middot; SOUPS'21</p>
+        <h3>Cyber-Physical Impact of VR Attacks</h3>
+        <p>What happens when a cyberattack affects both a machine and the person inside the experience?</p>
+      </a>
+      <a class="work-card" href="projects/sun.html">
+        <p class="kicker">Horizon Europe &middot; SUN</p>
+        <h3>Cyber Security for Human-Centred XR</h3>
+        <p>How can immersive security research support healthcare, accessibility and industrial scenarios?</p>
+      </a>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<section id="research">
+  <div class="page">
+    <p class="eyebrow">How I work</p>
+    <h2 class="section-title">Research questions. Working systems. Tested defences.</h2>
+    <p class="section-lede">I build environments to investigate a problem, reproduce failures under controlled conditions, and use the evidence to guide practical defences.</p>
     <div class="cycle reveal">
       <div class="cycle-step"><div class="step-name">Research</div><div class="step-sub">Understand</div></div>
       <div class="cycle-step"><div class="step-name">Build</div><div class="step-sub">Create</div></div>
       <div class="cycle-step"><div class="step-name">Break</div><div class="step-sub">Test</div></div>
       <div class="cycle-step"><div class="step-name">Measure</div><div class="step-sub">Observe</div></div>
       <div class="cycle-step"><div class="step-name">Secure</div><div class="step-sub">Defend</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="work">
-  <div class="page">
-    <p class="eyebrow">Featured work</p>
-    <h2 class="section-title">Seven projects, one throughline</h2>
-    <p class="section-lede">Seven projects across VR security research, applied XR engineering, and research tooling. What connects them is a bias toward evidence: build the system, measure how it behaves, then verify the result before trusting it.</p>
-    <div class="work-grid">
-      <a class="work-card reveal" href="projects/taxonomy.html">
-        <p class="kicker">Research &middot; Computers &amp; Security</p>
-        <h3>VR Cybersecurity Taxonomy</h3>
-        <p>How should researchers systematically reason about security and privacy threats in immersive environments?</p>
-      </a>
-      <a class="work-card reveal" href="projects/vr-security.html">
-        <p class="kicker">PhD research</p>
-        <h3>Detecting Cybersecurity Threats in VR</h3>
-        <p>Can a cyberattack against VR be detected from the behaviour of the system itself?</p>
-      </a>
-      <a class="work-card reveal" href="projects/intrusion-detection.html">
-        <p class="kicker">Machine learning &middot; IDS</p>
-        <h3>Telemetry-Driven XR Intrusion Detection</h3>
-        <p>Can runtime telemetry reveal attacks that conventional monitoring may miss?</p>
-      </a>
-      <a class="work-card reveal" href="projects/human-impact.html">
-        <p class="kicker">Human factors &middot; SOUPS'21</p>
-        <h3>Cyber-Physical Impact of VR Attacks</h3>
-        <p>What happens when a cyberattack affects both a machine and the person inside the experience?</p>
-      </a>
-      <a class="work-card reveal" href="projects/sun.html">
-        <p class="kicker">Horizon Europe &middot; SUN</p>
-        <h3>Cyber Security for Human-Centred XR</h3>
-        <p>How can immersive security research support healthcare, accessibility and industrial scenarios?</p>
-      </a>
-      <a class="work-card reveal" href="projects/gener8xr.html">
-        <p class="kicker">Innovate UK KTP &middot; Gener8XR</p>
-        <h3>Applied Mixed-Reality Platform Engineering</h3>
-        <p>How do you turn experimental immersive technology into a reusable, maintainable platform?</p>
-      </a>
-      <a class="work-card reveal" href="projects/ai-research-assistant.html">
-        <p class="kicker">Personal project &middot; Built on Claude Code</p>
-        <h3>AI Research Assistant</h3>
-        <p>Can an agentic workflow make literature synthesis trustworthy enough to cite, one fetched source at a time?</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section id="research">
-  <div class="page">
-    <p class="eyebrow">Research philosophy</p>
-    <h2 class="section-title">Build. Measure. Understand. Defend.</h2>
-    <p class="section-lede">Four steps, applied to every system I study, whether that's a doctoral VR testbed or a production mixed-reality platform.</p>
-    <div class="philosophy-grid">
-      <div class="philosophy-item reveal">
-        <p class="num">01</p>
-        <h3>Understand the system</h3>
-        <p>Identify assumptions, dependencies and attack surfaces.</p>
-      </div>
-      <div class="philosophy-item reveal">
-        <p class="num">02</p>
-        <h3>Reproduce the threat</h3>
-        <p>Build controlled experimental environments for meaningful failure modes.</p>
-      </div>
-      <div class="philosophy-item reveal">
-        <p class="num">03</p>
-        <h3>Instrument the environment</h3>
-        <p>Collect system and user signals that reveal behavioural change.</p>
-      </div>
-      <div class="philosophy-item reveal">
-        <p class="num">04</p>
-        <h3>Engineer the defence</h3>
-        <p>Translate evidence into detection mechanisms, warning systems or architectural improvements.</p>
-      </div>
     </div>
 
     <p class="eyebrow">Experience</p>
@@ -181,10 +161,10 @@
         <p><strong>Education:</strong> PhD, Computing and Information Systems, University of Greenwich (2019&ndash;2025) &middot; MSc, Computer Forensics and Cyber Security (Distinction), University of Greenwich (2017&ndash;2018) &middot; BSc, Computer Science, Ekiti State University, Nigeria (2016).</p>
       </div>
       <div class="about-side reveal">
-        <h3>Selected publications</h3>
+        <h3 id="publications">Selected publications</h3>
         <ul class="pub-list">
-          <li><span>Virtually Secure: A taxonomic assessment of cybersecurity challenges in virtual reality environments</span>Computers &amp; Security (Q1 journal)</li>
-          <li><span>Detecting framerate-oriented cyber attacks on user experience in virtual reality</span>VR4Sec Workshop, USENIX SOUPS 2021</li>
+          <li><span><a href="https://doi.org/10.1016/j.cose.2022.102951" target="_blank" rel="noopener">Virtually Secure: A taxonomic assessment of cybersecurity challenges in virtual reality environments</a></span>Computers &amp; Security (Q1 journal)</li>
+          <li><span><a href="https://bura.brunel.ac.uk/handle/2438/23880" target="_blank" rel="noopener">Detecting framerate-oriented cyber attacks on user experience in virtual reality</a></span>VR4Sec Workshop, USENIX SOUPS 2021</li>
         </ul>
         <h3>Awards</h3>
         <ul class="award-list">
@@ -201,6 +181,7 @@
     <div class="contact-block reveal">
       <p class="eyebrow">Contact</p>
       <h2 class="section-title">Let's build something interesting.</h2>
+      <p class="contact-intro">I’m interested in applied security research, research engineering and secure systems roles, as well as research collaborations.</p>
       <div class="ctas">
         <a class="btn btn-primary" href="mailto:blessingodeleye@gmail.com">Email me</a>
         <a class="btn btn-secondary" href="https://www.linkedin.com/in/blessingodeleye" target="_blank" rel="noopener">LinkedIn</a>
@@ -224,3 +205,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+

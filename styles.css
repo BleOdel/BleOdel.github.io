@@ -28,6 +28,8 @@ body{
 
 /* ---------- nav ---------- */
 nav.topbar{
+  position:relative;
+  z-index:10;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -248,7 +250,10 @@ p.lede{
 .utility a{color:var(--muted); text-decoration:none; border-bottom:1px solid transparent;}
 .utility a:hover, .utility a:focus-visible{color:var(--text); border-bottom-color:var(--cyan);}
 
-.hero-mark{width:clamp(360px,46vw,680px);}
+.hero-mark{width:clamp(360px,46vw,680px); max-width:100%; min-width:0;}
+@media (max-width:900px){
+  .hero-mark{width:100%; max-width:360px;}
+}
 .hero-mark img{width:100%;height:auto;display:block;}
 
 @media (prefers-reduced-motion:no-preference){
@@ -350,25 +355,7 @@ p.lede{
 }
 .work-card p{font-size:14px; line-height:1.6; color:var(--muted); margin:0;}
 
-/* ---------- research philosophy & experience ---------- */
-.philosophy-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-  margin-bottom:56px;
-}
-@media (max-width:900px){ .philosophy-grid{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:560px){ .philosophy-grid{grid-template-columns:1fr;} }
-.philosophy-item .num{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:700;
-  font-size:13px;
-  color:var(--cyan);
-  margin:0 0 8px;
-}
-.philosophy-item h3{font-family:'Space Grotesk',sans-serif; font-size:16px; margin:0 0 8px;}
-.philosophy-item p{font-size:14px; color:var(--muted); line-height:1.6; margin:0;}
-
+/* ---------- experience ---------- */
 .timeline{border-left:1px solid var(--line); padding-left:24px; display:flex; flex-direction:column; gap:28px;}
 .timeline-item .when{
   font-family:'Space Grotesk',sans-serif;
@@ -507,3 +494,25 @@ p.lede{
 
 .back-link{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; color:var(--muted); text-decoration:none; margin-bottom:20px;}
 .back-link:hover, .back-link:focus-visible{color:var(--text);}
+
+
+/* ---------- portfolio evidence and upcoming resources ---------- */
+.btn:disabled{cursor:default; color:var(--muted); border:1px dashed var(--muted-dim); background:transparent; flex-wrap:wrap; text-align:left; max-width:100%;}
+.btn:disabled:hover{transform:none; background:transparent; border-color:var(--muted-dim);}
+.status-label{display:inline-block; font-size:11px; font-weight:500; letter-spacing:.04em; color:var(--muted); text-transform:uppercase;}
+.evidence-note{font-size:12.5px; line-height:1.7; color:var(--muted); padding-top:16px; padding-bottom:22px;}
+.evidence-note a, .pub-list a{color:var(--cyan); text-decoration:underline; text-underline-offset:3px;}
+.evidence-note a:focus-visible, .pub-list a:focus-visible{outline:2px solid var(--cyan); outline-offset:4px;}
+.card-link{display:block; margin-top:20px; color:var(--cyan); font-size:13px; font-weight:600;}
+.additional-work{margin-top:28px; border-top:1px solid var(--line); padding-top:24px;}
+.additional-work summary{cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:500; line-height:1.6;}
+.additional-work summary .status-label{margin-left:10px;}
+.additional-work summary:focus-visible{outline:2px solid var(--cyan); outline-offset:6px;}
+.additional-work[open] .work-grid{margin-top:24px;}
+#research .cycle{margin-bottom:48px;}
+#publications, #evaluation{scroll-margin-top:24px;}
+.contact-intro{max-width:58ch; margin:0 auto 28px; color:var(--muted); line-height:1.7; font-size:15px;}
+.media-placeholder{min-height:240px; padding:clamp(24px,5vw,48px); border:1px dashed var(--muted-dim); border-radius:10px; background:var(--surface); display:flex; flex-direction:column; justify-content:center;}
+.media-placeholder h2{margin-top:16px;}
+.media-placeholder .placeholder-note{font-size:13px; color:var(--muted);}
+@media (max-width:700px){.cycle-step:last-child{grid-column:1 / -1;}}

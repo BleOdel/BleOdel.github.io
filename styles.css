@@ -9,6 +9,7 @@
   --text:#f7f9ff;
   --muted:#9aa7c2;
   --muted-dim:#7f8bad;
+  --pink:#ef6fc4;
 }
 
 *{box-sizing:border-box;}
@@ -480,6 +481,27 @@ p.lede{
   color:var(--muted);
 }
 .story-strip span.arrow{color:var(--muted-dim); font-weight:400;}
+
+/* ---------- paper figure ---------- */
+.paper-figure{margin:24px 0 0; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface);}
+.paper-figure img{display:block; width:100%; height:auto; background:#fff; padding:clamp(10px,1.6vw,20px);}
+.paper-figure figcaption{padding:13px 18px 15px; font-size:13px; line-height:1.6; color:var(--muted); border-top:1px solid var(--line);}
+.paper-figure figcaption .src{display:block; margin-top:5px; font-size:12px; color:var(--muted-dim);}
+
+/* ---------- taxonomy map ---------- */
+.taxonomy-map{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:24px 0 20px; align-items:start;}
+@media (max-width:960px){.taxonomy-map{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.taxonomy-map{grid-template-columns:1fr;}}
+.tx-branch{background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--accent); border-radius:10px; padding:16px 15px 15px;}
+.tx-exploit{--accent:var(--cyan);} .tx-breach{--accent:var(--blue);}
+.tx-impact{--accent:var(--violet);} .tx-intent{--accent:var(--pink);}
+.tx-branch h3{font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin:0 0 5px;}
+.tx-branch .tx-q{font-size:12.5px; line-height:1.5; color:var(--muted-dim); margin:0 0 14px; max-width:none;}
+.tx-group + .tx-group{margin-top:13px; padding-top:13px; border-top:1px solid var(--line);}
+.tx-group > span{display:block; font-family:'Space Grotesk',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:.03em; color:var(--text); margin-bottom:7px;}
+.tx-group ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:5px;}
+.tx-group li{font-size:11.5px; line-height:1.5; color:var(--muted); background:var(--surface-2); border:1px solid var(--line); border-radius:5px; padding:3px 8px;}
+.project-section p.figure-note{font-size:13px; line-height:1.65; color:var(--muted-dim);}
 .story-strip span.text-cyan{color:var(--cyan);}
 .story-strip span.text-violet{color:var(--violet);}
 

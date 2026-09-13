@@ -42,12 +42,23 @@
 
 <section class="project-section" aria-labelledby="demo-title">
   <div class="page">
-    <!-- Replace this placeholder with a captioned video when the demo is ready. -->
-    <div class="media-placeholder">
-      <span class="status-label">Demo &middot; Coming soon</span>
-      <h2 id="demo-title">VR security testbed demo</h2>
-      <p>A short walkthrough of the experimental environment and controlled framerate attack.</p>
-      <p class="placeholder-note">The video is not available yet.</p>
+    <h2 id="demo-title">VR security testbed demo</h2>
+    <p>The same room-scale testbed under normal conditions and during a controlled GPU-based attack. Both clips are silent and encoded at identical settings, so what differs between them is the attack rather than the compression.</p>
+    <div class="demo-grid">
+      <figure class="demo-video">
+        <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-vr-testbed-normal.jpg">
+          <source src="../assets/videos/vr-testbed-normal.mp4" type="video/mp4">
+          <p>Your browser can't play this clip. <a href="../assets/videos/vr-testbed-normal.mp4">Download the MP4</a>.</p>
+        </video>
+        <figcaption><strong>Normal session</strong>The furnished environment running without interference, as the user looks around and moves through the space.</figcaption>
+      </figure>
+      <figure class="demo-video">
+        <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-vr-testbed-attack.jpg">
+          <source src="../assets/videos/vr-testbed-attack.mp4" type="video/mp4">
+          <p>Your browser can't play this clip. <a href="../assets/videos/vr-testbed-attack.mp4">Download the MP4</a>.</p>
+        </video>
+        <figcaption><strong>Under attack</strong>The same environment with the GPU-based attack running, degrading frame rate during locomotion and object interaction.</figcaption>
+      </figure>
     </div>
   </div>
 </section>

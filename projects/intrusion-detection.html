@@ -42,13 +42,15 @@
 
 <section class="project-section" aria-labelledby="demo-title">
   <div class="page">
-    <!-- Replace this placeholder with a captioned video when the demo is ready. -->
-    <div class="media-placeholder">
-      <span class="status-label">Demo &middot; Coming soon</span>
-      <h2 id="demo-title">Threat detection demo</h2>
-      <p>A short walkthrough of telemetry capture, anomalous behaviour and the detection warning.</p>
-      <p class="placeholder-note">The video is not available yet.</p>
-    </div>
+    <h2 id="demo-title">Threat detection demo</h2>
+    <p>The attack condition the detector is trained to catch. The telemetry underneath this footage, frame timing and head-motion intervals and pose, is what the Isolation Forest model scores two seconds at a time.</p>
+      <figure class="demo-video">
+        <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-vr-testbed-attack.jpg">
+          <source src="../assets/videos/vr-testbed-attack.mp4" type="video/mp4">
+          <p>Your browser can't play this clip. <a href="../assets/videos/vr-testbed-attack.mp4">Download the MP4</a>.</p>
+        </video>
+        <figcaption><strong>GPU-based framerate attack</strong>The same clip shown on the <a href="vr-security.html">testbed page</a>: the degraded session whose telemetry signature the detector learns to flag.</figcaption>
+      </figure>
   </div>
 </section>
 

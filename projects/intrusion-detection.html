@@ -43,7 +43,7 @@
 <section class="project-section" aria-labelledby="demo-title">
   <div class="page">
     <h2 id="demo-title">Threat detection demo</h2>
-    <p>The attack condition the detector is built to catch. The telemetry underneath this footage, frame timing and head-rotation intervals, is what the Isolation Forest model scores across a three-second sliding window.</p>
+    <p>This clip shows the attack condition the detector is built to catch. The telemetry underneath this footage, frame timing and head-rotation intervals, is what the Isolation Forest model scores across a three-second sliding window.</p>
       <figure class="demo-video">
         <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-vr-testbed-attack.jpg">
           <source src="../assets/videos/vr-testbed-attack.mp4" type="video/mp4">
@@ -69,7 +69,7 @@
 <section class="project-section">
   <div class="page">
     <h2>Why unsupervised</h2>
-    <p>Isolation Forest requires no prior assumptions about the distribution of monitored parameters, which matters in a domain like VR security where there's limited existing knowledge of which telemetry signals actually indicate an attack. This let the model learn what "normal" looks like for a given VR system without labelled attack data.</p>
+    <p>Isolation Forest requires no prior assumptions about the distribution of monitored parameters, which matters in a domain like VR security where there's limited existing knowledge of which telemetry signals indicate an attack. This let the model learn what "normal" looks like for a given VR system without labelled attack data.</p>
   </div>
 </section>
 
@@ -115,7 +115,7 @@
 <section class="project-section">
   <div class="page">
     <h2>From detection to warning</h2>
-    <p>I integrated the detector with a Python-to-Unity alert pipeline. Sliding-window processing reduced false-positive triggers, while transmitting positive detections only addressed delays observed when sending both normal and attack outputs. In Unity, the warning appeared on receipt of an alert and was hidden after 25 seconds without a further alert, controlling how long it remained visible.</p>
+    <p>I integrated the detector with a Python-to-Unity alert pipeline. Sliding-window processing reduced false-positive triggers, while transmitting positive detections only addressed delays observed when sending both normal and attack outputs. In Unity, the warning appeared on receipt of an alert and was hidden after 25 seconds without a further alert, which limited how long it stayed on screen.</p>
     <div class="table-wrap">
       <table class="data-table">
         <caption>Source: thesis pp.&nbsp;145, 154&ndash;155. The 25 seconds is an inactivity timeout measured from the latest alert, not a delay before the warning appears.</caption>

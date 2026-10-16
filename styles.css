@@ -290,6 +290,12 @@ p.lede{
   margin-bottom:8px;
 }
 .evidence .num .accent{color:var(--cyan);}
+.evidence .num{white-space:nowrap;}
+.evidence .num.is-long{font-size:clamp(14px,1.85vw,23px);}
+@media (max-width:760px){
+  /* two columns: the cell is wide relative to the screen, so size from that instead */
+  .evidence .num.is-long{font-size:clamp(14px,calc(7.1vw - 8.6px),22px);}
+}
 .evidence .label{font-size:12.5px; color:var(--muted); line-height:1.4;}
 
 /* ---------- narrative cycle ---------- */
@@ -549,3 +555,29 @@ p.lede{
 .demo-video figcaption strong{display:block; font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); margin-bottom:6px;}
 .demo-video figcaption a{color:var(--cyan); text-decoration:underline; text-underline-offset:2px;}
 @media (max-width:700px){.cycle-step:last-child{grid-column:1 / -1;}}
+
+/* ---------- demo groups (implementation-labelled) ---------- */
+.demo-group{margin-top:32px;}
+.demo-group-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; margin-bottom:14px;}
+.demo-group-head h3{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; margin:0; color:var(--text);}
+.demo-group-head .stack-label{font-size:12px; letter-spacing:.03em; color:var(--muted-dim);}
+.demo-group .demo-grid{margin-top:0;}
+.demo-group .demo-video.is-wide{margin-top:0;}
+
+/* ---------- data tables ---------- */
+.table-wrap{margin:20px 0 10px; overflow-x:auto; border:1px solid var(--line); border-radius:10px; background:var(--surface);}
+.data-table{width:100%; border-collapse:collapse; font-size:14px;}
+.data-table caption{caption-side:bottom; text-align:left; padding:11px 16px 13px; font-size:12.5px; line-height:1.55; color:var(--muted-dim); border-top:1px solid var(--line);}
+.data-table th{font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); text-align:left; padding:11px 16px; border-bottom:1px solid var(--line); background:var(--surface-2);}
+.data-table td{padding:11px 16px; color:var(--muted); border-bottom:1px solid var(--line); line-height:1.5; vertical-align:top;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table td.num, .data-table th.num{text-align:right; font-variant-numeric:tabular-nums;}
+.data-table td.num{white-space:nowrap;}
+.data-table td:first-child{color:var(--text); font-weight:500;}
+.data-table tr.is-selected td{color:var(--text);}
+.data-table tr.is-selected td:first-child{color:var(--cyan);}
+@media (max-width:560px){
+  .data-table{font-size:13px;}
+  .data-table th, .data-table td{padding:10px 11px;}
+  .data-table caption{padding:10px 11px 12px;}
+}

@@ -32,7 +32,7 @@
     <p class="eyebrow">PhD research &middot; University of Greenwich, 2019&ndash;2025</p>
     <h1>Detecting Cybersecurity Threats in Virtual Reality</h1>
     <p class="question">Can a cyberattack against VR be detected from the behaviour of the system itself?</p>
-    <p class="summary">Doctoral research combining a custom-built VR testbed, a novel GPU-based cyber attack, and an unsupervised machine-learning intrusion detection system: the first practical step toward reactive VR security defences, where prevention alone is insufficient.</p>
+    <p class="summary">Doctoral research combining a custom-built VR testbed, a novel GPU-based cyber attack, and an unsupervised machine-learning intrusion detection system: a step toward reactive VR security defences for cases where prevention alone is insufficient.</p>
     <div class="project-meta">
       <span><strong>Thesis:</strong> Addressing Cyber Security Threats in Virtual Reality Environments (2024)</span>
       <span><strong>Supervisors:</strong> Prof. Georgios Loukas, Dr Georgia Sakellari, Dr Ryan Heartfield</span>
@@ -65,8 +65,15 @@
 
 <section class="project-section">
   <div class="page">
+    <h2>What I built</h2>
+    <p>I developed a modular VR research testbed in Unity using OpenXR and XR Interaction Toolkit. It combined locomotion, object interaction, avatar selection, a training lobby and experimental scenes. The testbed supported controlled evaluation of GPU-based attacks, collection of system telemetry and assessment of users&rsquo; responses to security warnings.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
     <h2>The problem</h2>
-    <p>VR security research had focused almost entirely on prevention (risk assessment and authentication), with no consideration for what happens when prevention fails or a threat is entirely new. Head-mounted displays compound the problem: they isolate users from real-world cues (network state, CPU usage, unfamiliar processes) that would normally hint at a compromise.</p>
+    <p>VR security research had concentrated on prevention, through risk assessment and authentication, which does not address what happens when prevention fails or a threat is new. Head-mounted displays compound the problem: they isolate users from real-world cues (network state, CPU usage, unfamiliar processes) that would normally hint at a compromise.</p>
   </div>
 </section>
 
@@ -79,22 +86,27 @@
       <span>Practical IDS</span><span class="arrow">&rarr;</span>
       <span>Security taxonomy</span>
     </div>
-    <p>A GPU-based attack that induces VR sickness on demand by manipulating frame rate; a custom-built, modular VR testbed designed specifically to carry out that attack and observe user reactions to real-time warnings; an Isolation Forest-based intrusion detection system, the first practical IDS for VR, that gives early warning before an attack significantly impacts the user; and a systematic taxonomy of VR cybersecurity challenges (see <a href="taxonomy.html">VR Cybersecurity Taxonomy</a>) that helped identify where this reactive-defence gap sat in the field.</p>
+    <p>A GPU-based attack that induces VR sickness on demand by manipulating frame rate; a custom-built, modular VR testbed designed specifically to carry out that attack and observe user reactions to real-time warnings; an Isolation Forest-based intrusion detection system, which in the literature reviewed for the thesis was the first implementation of a VR intrusion detection system against VR cyber attacks, designed to warn the user before an attack&rsquo;s impact escalates; and a systematic taxonomy of VR cybersecurity challenges (see <a href="taxonomy.html">VR Cybersecurity Taxonomy</a>) that helped identify where this reactive-defence gap sat in the field.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Collaborative capability</h2>
+    <p>The testbed also included multiplayer functionality and a two-user coordination scene, providing a basis for future studies of collaborative VR security. These capabilities extended the platform beyond the single-user experiment reported in the thesis; the collaborative scene was not evaluated in that study.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
     <h2>Where it led</h2>
-    <p>The testbed, telemetry pipeline and detection approach developed here became the technical foundation for two follow-on projects: the Horizon Europe <a href="sun.html">SUN</a> consortium, which extended the IDS into healthcare and manufacturing demonstrators, and the deeper feature-engineering and evaluation work covered in <a href="intrusion-detection.html">Telemetry-Driven XR Intrusion Detection</a> and <a href="human-impact.html">Cyber-Physical Impact of VR Attacks</a>.</p>
+    <p>The detection pipeline and participant study are reported in detail in <a href="intrusion-detection.html">Telemetry-Driven XR Intrusion Detection</a> and <a href="human-impact.html">Cyber-Physical Impact of VR Attacks</a>. The work also informed the Horizon Europe <a href="sun.html">SUN</a> project, which applied XR threat detection in healthcare and manufacturing demonstrators.</p>
   </div>
 </section>
 <section class="project-section">
   <div class="page">
     <h2>Doctoral thesis</h2>
-    <p>Addressing Cyber Security Threats in Virtual Reality Environments.</p>
-    <!-- Replace with the thesis download link when available. -->
-    <button class="btn btn-secondary" type="button" disabled>Download thesis <span class="status-label">Coming soon</span></button>
+    <p>Addressing Cyber Security Threats in Virtual Reality Environments. Submitted to the University of Greenwich, October 2024.</p>
   </div>
 </section>
 </main>

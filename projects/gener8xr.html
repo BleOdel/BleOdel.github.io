@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gener8XR: Applied Mixed-Reality Platform Engineering · Blessing Odeleye</title>
-<meta name="description" content="An Innovate UK KTP building the Gener8XR mixed-reality platform: spatial anchoring, HTTP/WebSocket bridging, and a reusable XR development blueprint.">
+<meta name="description" content="Mixed-reality functionality developed for Gener8XR in Unity and C# through an Innovate UK KTP: spatial interfaces, object interaction, state persistence and co-located multiplayer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -32,10 +32,10 @@
     <p class="eyebrow">Innovate UK KTP &middot; Gener8 Spaces Ltd &amp; Edge Hill University, 2024&ndash;Present</p>
     <h1>Gener8XR: Applied Mixed-Reality Platform Engineering</h1>
     <p class="question">How do you turn experimental immersive technology into a reusable, maintainable platform?</p>
-    <p class="summary">A production mixed-reality platform unifying room-scale CAVE projection systems with Quest 3-based MR, built as the sole XR Solutions Developer on a 32-month Innovate UK Knowledge Transfer Partnership.</p>
+    <p class="summary">Through an Innovate UK Knowledge Transfer Partnership, I developed mixed-reality functionality for Gener8XR using Unity and C#, covering UI/UX, spatial interfaces, object interaction, object-state persistence and co-located multiplayer experiences. The demonstrations below show work across the original OpenXR-based implementation and the later Meta SDK pipeline.</p>
     <div class="project-meta">
-      <span><strong>Funded value:</strong> &pound;205,332</span>
-      <span><strong>Stack:</strong> Unity &middot; C# &middot; OpenXR &middot; Photon &middot; Quest 3 &middot; Spatial anchors</span>
+      <span><strong>KTP project value:</strong> &pound;205,332</span>
+      <span><strong>Stack:</strong> Unity &middot; C# &middot; OpenXR &middot; AR Foundation &middot; XR Interaction Toolkit &middot; Photon Fusion 2 &middot; Meta SDK</span>
     </div>
   </div>
 </section>
@@ -43,72 +43,93 @@
 <section class="project-section" aria-labelledby="demo-title">
   <div class="page">
     <h2 id="demo-title">Mixed-reality platform demo</h2>
-    <p>Captured through the headset in a university clinical skills lab. The room is real, seen through passthrough; everything else is rendered and anchored to it.</p>
-    <div class="demo-grid">
+    <p>These clips show two implementations I developed: the platform demonstrations use OpenXR, AR Foundation, XR Interaction Toolkit and Photon Fusion 2; the separate detachable wrist-menu clip uses the Meta SDK pipeline. Both are built in Unity and C#.</p>
+
+    <div class="demo-group">
+      <div class="demo-group-head">
+        <h3>Platform demonstrations</h3>
+        <span class="stack-label">OpenXR &middot; AR Foundation &middot; XR Interaction Toolkit &middot; Photon Fusion 2</span>
+      </div>
+      <div class="demo-grid">
       <figure class="demo-video">
         <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-gener8xr-showcase.jpg">
           <source src="../assets/videos/gener8xr-showcase.mp4" type="video/mp4">
           <p>Your browser can't play this clip. <a href="../assets/videos/gener8xr-showcase.mp4">Download the MP4</a>.</p>
         </video>
-        <figcaption><strong>Platform walkthrough</strong>A medical kit spawns at the first-aid sign on the wall, then is picked up and duplicated by hand. A life-size anatomy model is taken apart layer by layer, and at the end the wrist panel&rsquo;s load control snaps the dismantled model back to its saved state in one step.</figcaption>
+        <figcaption><strong>Platform walkthrough</strong>Object spawning and manipulation, anatomy-layer interaction, and restoration of a saved model state through the wrist panel. Developed using OpenXR, AR Foundation, XR Interaction Toolkit and Photon Fusion 2.</figcaption>
       </figure>
       <figure class="demo-video">
         <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-gener8xr-spatial-interface.jpg">
           <source src="../assets/videos/gener8xr-spatial-interface.mp4" type="video/mp4">
           <p>Your browser can't play this clip. <a href="../assets/videos/gener8xr-spatial-interface.mp4">Download the MP4</a>.</p>
         </video>
-        <figcaption><strong>Spatial interface</strong>The radial context menu, the wrist-mounted control panel and the world-anchored Anatomy Atlas, all driven by hand tracking rather than controllers.</figcaption>
+        <figcaption><strong>Spatial interface</strong>A radial context menu, wrist-mounted controls and a world-space Anatomy Atlas panel for interacting with mixed-reality content. Developed using OpenXR, AR Foundation, XR Interaction Toolkit and Photon Fusion 2.</figcaption>
       </figure>
       <figure class="demo-video">
         <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-gener8xr-rotate-scale.jpg">
           <source src="../assets/videos/gener8xr-rotate-scale.mp4" type="video/mp4">
           <p>Your browser can't play this clip. <a href="../assets/videos/gener8xr-rotate-scale.mp4">Download the MP4</a>.</p>
         </video>
-        <figcaption><strong>Rotate and scale</strong>Selecting an object brings up rotation and move affordances beside it. The kit is turned with two hands, then scaled down to a small cube on the floor and back up to near room height.</figcaption>
+        <figcaption><strong>Rotate and scale</strong>Object selection, rotation and resizing in mixed reality, including two-handed manipulation and changes in object scale. Developed using OpenXR, AR Foundation, XR Interaction Toolkit and Photon Fusion 2.</figcaption>
       </figure>
       <figure class="demo-video">
         <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-gener8xr-multiplayer.jpg">
           <source src="../assets/videos/gener8xr-multiplayer.mp4" type="video/mp4">
           <p>Your browser can't play this clip. <a href="../assets/videos/gener8xr-multiplayer.mp4">Download the MP4</a>.</p>
         </video>
-        <figcaption><strong>Colocated multiplayer</strong>Two headsets in the same room sharing one anchored scene. A kit, a ball and an anatomical heart are passed between users, each object sitting in the same physical place for both of them.</figcaption>
+        <figcaption><strong>Co-located multiplayer</strong>Two headset users in the same room interact with shared virtual objects, including a medical kit, a ball and an anatomical heart. Developed using OpenXR, AR Foundation, XR Interaction Toolkit and Photon Fusion 2.</figcaption>
       </figure>
+      </div>
     </div>
+
+    <div class="demo-group">
+      <div class="demo-group-head">
+        <h3>Meta SDK wrist-interface demonstration</h3>
+        <span class="stack-label">Meta SDK</span>
+      </div>
     <figure class="demo-video is-wide">
       <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-gener8xr-wrist-menu.jpg">
         <source src="../assets/videos/gener8xr-wrist-menu.mp4" type="video/mp4">
         <p>Your browser can't play this clip. <a href="../assets/videos/gener8xr-wrist-menu.mp4">Download the MP4</a>.</p>
       </video>
-      <figcaption><strong>Detachable wrist menu</strong>The panel collapses to a compact strip and expands to a full grid. A pinch lifts it off the wrist to stay anchored in space, and carrying it back re-attaches it. Recorded against an empty scene so the interface reads on its own, without a room behind it.</figcaption>
+      <figcaption><strong>Detachable wrist menu</strong>A wrist interface developed using the Meta SDK pipeline. The menu switches between a compact strip and an expanded grid, and can be detached, repositioned and reattached to the wrist.</figcaption>
     </figure>
+    </div>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
-    <h2>Spatial anchoring and persistence</h2>
-    <p>A shared spatial anchoring and persistence system for colocated MR sessions achieves sub-15cm drift detection with automatic realignment, incorporating pose stabilisation and world-anchored scene restoration across users, sessions and devices. That is the core technical challenge in colocated MR: keeping multiple headsets agreeing on where virtual objects sit in physical space.</p>
+    <h2>My contribution</h2>
+    <p>I designed and implemented spatial interfaces and core MR functionality, including object manipulation, object-state persistence, shared interaction, and HTTP API and WebSocket integration. The first four videos show the OpenXR, AR Foundation, XR Interaction Toolkit and Photon Fusion 2 implementation. The separate wrist-menu clip shows my UI work using the Meta SDK pipeline. I also contributed requirements, technical documentation and knowledge transfer.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Persistence and shared interaction</h2>
+    <p>Object-state persistence lets a scene be saved from the wrist panel and restored later: in the walkthrough, a dismantled anatomy model returns to its saved state in one step. Co-located multiplayer lets two headset users in the same room interact with the same virtual objects. Keeping several headsets in agreement about where those objects sit in physical space is the central technical problem in co-located mixed reality.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
     <h2>Bridging Unity and non-technical tools</h2>
-    <p>A bidirectional interoperability layer connects Unity MR scenes to the Intuiface platform using a custom HTTP command API and WebSocket event broadcasting, enabling non-technical users to control live 3D scene content in real time, so Gener8's own staff can operate the platform without touching Unity directly.</p>
+    <p>A bidirectional interoperability layer connects Unity MR scenes to the Intuiface platform through a custom HTTP command API and WebSocket event broadcasting, so live scene content can be controlled through an external interface without opening Unity.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
     <h2>Interaction design and reusable engineering</h2>
-    <p>I designed the core interactive interfaces (radial context menus, wrist-mounted controls, and world-anchored panels) for spatial usability and clarity in shared MR environments, informed directly by the security-warning and cognitive-load insights from the <a href="human-impact.html">human-impact</a> study. A reusable XR development blueprint standardises C# patterns, prefabs and modular architecture, so future projects build on a stable codebase rather than starting from scratch.</p>
+    <p>I designed the core interactive interfaces (radial context menus, wrist-mounted controls, and world-space panels) for spatial usability and clarity in shared MR environments, informed directly by the security-warning and cognitive-load insights from the <a href="human-impact.html">human-impact</a> study. A reusable XR development blueprint standardises C# patterns, prefabs and modular architecture, so future projects build on a stable codebase rather than starting from scratch.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
     <h2>Requirements and knowledge transfer</h2>
-    <p>I translated stakeholder discovery and user surveys into a formal Software Requirements Specification (SRS) and Agile user stories, which drove the UX design and development roadmap. I also delivered documentation and internal workshops for non-technical staff on deploying, configuring and operating the platform in educational settings.</p>
+    <p>I translated stakeholder discovery and user surveys into a formal Software Requirements Specification (SRS) and Agile user stories, which drove the UX design and development roadmap. I also delivered documentation and internal workshops for non-technical staff on configuring and operating the platform.</p>
   </div>
 </section>
 </main>

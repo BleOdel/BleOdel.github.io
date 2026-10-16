@@ -32,7 +32,7 @@
     <p class="eyebrow">Personal project &middot; Built on Claude Code, Aug 2026</p>
     <h1>AI Research Assistant</h1>
     <p class="question">Can an agentic workflow make literature synthesis trustworthy enough to cite, one fetched source at a time?</p>
-    <p class="summary">A structured research framework built on Claude Code that turns literature discovery and synthesis into a repeatable pipeline: search academic databases in parallel, score every source against a fixed rubric, draft a cited report, and have a second agent fact-check every citation before anything compiles.</p>
+    <p class="summary">A structured research framework built on Claude Code that turns literature discovery and synthesis into a repeatable pipeline: search academic databases in parallel, score every source against a fixed rubric, draft a cited report, and have a second agent check each citation against the fetched source before the report compiles.</p>
     <div class="project-meta">
       <span><strong>Stack:</strong> TypeScript &middot; Bun &middot; LaTeX/BibTeX &middot; Claude Code skills</span>
       <span><strong>Sources:</strong> arXiv, Semantic Scholar, Google Scholar, OpenAlex</span>
@@ -44,7 +44,7 @@
   <div class="page">
     <!-- Replace this placeholder with a captioned video when the demo is ready. -->
     <div class="media-placeholder">
-      <span class="status-label">Demo &middot; Coming soon</span>
+      <span class="status-label">Demonstration coming soon</span>
       <h2 id="demo-title">AI research workflow demo</h2>
       <p>A short walkthrough of source discovery, citation review and report generation.</p>
       <p class="placeholder-note">The video is not available yet.</p>
@@ -69,7 +69,7 @@
 <section class="project-section">
   <div class="page">
     <h2>The rule everything else follows from</h2>
-    <p>Every claim traces to a source that was actually fetched during the run. A citation that can't be verified against fetched content is treated as a defect, not a stylistic nitpick. A dedicated reviewer agent checks every citation in a drafted report against the source's real content (full text where open access, via a dedicated paper-fetch tool), separately from the agent that wrote the draft.</p>
+    <p>The workflow is designed so that every claim traces to a source that was actually fetched during the run. A citation that can't be verified against fetched content is treated as a defect, not a stylistic nitpick. A dedicated reviewer agent checks every citation in a drafted report against the source's real content (full text where open access, via a dedicated paper-fetch tool), separately from the agent that wrote the draft.</p>
   </div>
 </section>
 
@@ -84,7 +84,7 @@
 <section class="project-section">
   <div class="page">
     <h2>Why it matters</h2>
-    <p>Literature review is exactly the kind of task where an LLM's fluency is a liability if nothing constrains it. A plausible-sounding citation is easy to generate and expensive to catch. Building the fact-checking pass as a separate agent, and the evidence rule as a hard constraint rather than a prompt suggestion, follows the same approach as the intrusion-detection and taxonomy work: don't trust a system's output until something independent has checked it against the evidence.</p>
+    <p>Literature review is exactly the kind of task where an LLM's fluency is a liability if nothing constrains it. A plausible-sounding citation is easy to generate and expensive to catch. Building the fact-checking pass as a separate agent, and the evidence rule as a hard constraint rather than a prompt suggestion, follows the same approach as the intrusion-detection and taxonomy work: don't trust a system's output until something independent has checked it against the evidence. The output supports a researcher's own review of the literature rather than replacing it: the citation check reduces one kind of error, but it does not guarantee that a report is factually accurate.</p>
   </div>
 </section>
 <section class="project-section">
@@ -92,7 +92,7 @@
     <h2>Example research report</h2>
     <p>A sample output will show the report structure, source references and citation review.</p>
     <!-- Replace with a download link once the sample PDF is available. -->
-    <button class="btn btn-secondary" type="button" disabled>Download sample report <span class="status-label">Coming soon</span></button>
+    <button class="btn btn-secondary" type="button" disabled>Sample report coming soon</button>
   </div>
 </section>
 </main>

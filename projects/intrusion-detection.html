@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Telemetry-Driven XR Intrusion Detection · Blessing Odeleye</title>
-<meta name="description" content="A telemetry-based intrusion detection system for VR using PCA feature reduction and an Isolation Forest model, reporting 0.97-0.99 F1 and 2-9s detection latency across four tested attack intensities.">
+<meta name="description" content="A telemetry-based intrusion detection system for VR. Isolation Forest, selected from four unsupervised models, reached 97.35-99.01% F1 and 0-2 s offline detection latency across four GPU-attack datasets.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -32,10 +32,10 @@
     <p class="eyebrow">Machine learning &middot; Intrusion detection</p>
     <h1>Telemetry-Driven XR Intrusion Detection</h1>
     <p class="question">Can runtime telemetry reveal attacks that conventional monitoring may miss?</p>
-    <p class="summary">A telemetry-based intrusion detection system using more than 20 engineered features, PCA dimensionality reduction, and unsupervised anomaly detection across roughly 580,000 time-series windows of VR sensor data.</p>
+    <p class="summary">I trained and compared four unsupervised models using 580,065 normal training examples. Isolation Forest achieved F1 scores of 97.35&ndash;99.01% across four offline GPU-attack datasets, with reported detection latency of 0&ndash;2 seconds from annotated attack onset to the first positive model prediction. I then integrated the selected model with an in-headset security warning for participant evaluation.</p>
     <div class="project-meta">
       <span><strong>Model:</strong> Isolation Forest (benchmarked against One-Class SVM, LOF, Elliptic Envelope)</span>
-      <span><strong>Result:</strong> 0.97&ndash;0.99 F1; 2&ndash;9s latency across four tested intensities</span>
+      <span><strong>Offline result:</strong> 97.35&ndash;99.01% F1; 0&ndash;2&nbsp;s detection latency across four attack datasets</span>
     </div>
   </div>
 </section>
@@ -43,7 +43,7 @@
 <section class="project-section" aria-labelledby="demo-title">
   <div class="page">
     <h2 id="demo-title">Threat detection demo</h2>
-    <p>The attack condition the detector is trained to catch. The telemetry underneath this footage, frame timing and head-motion intervals and pose, is what the Isolation Forest model scores two seconds at a time.</p>
+    <p>The attack condition the detector is built to catch. The telemetry underneath this footage, frame timing and head-rotation intervals, is what the Isolation Forest model scores across a three-second sliding window.</p>
       <figure class="demo-video">
         <video controls muted loop playsinline preload="metadata" poster="../assets/images/poster-vr-testbed-attack.jpg">
           <source src="../assets/videos/vr-testbed-attack.mp4" type="video/mp4">
@@ -57,7 +57,7 @@
 <section class="project-section">
   <div class="page">
     <h2>The pipeline</h2>
-    <p>A telemetry feature pipeline extracts more than 20 real-time signals from the VR session: frame duration statistics, framerate entropy, Head Rotation Interval (HRI) metrics, and quaternion/Euler pose data. Those run across roughly 580,000 time-series windows. Principal Component Analysis reduces this to a compact representation of five principal components optimised for low-latency inference, which an Isolation Forest model classifies as normal or anomalous using a two-second sliding window.</p>
+    <p>A telemetry pipeline extracts 20 signals from the VR session, including frame-duration statistics, framerate entropy, head-rotation interval (HRI) metrics and head pose. Principal Component Analysis was used to identify the most informative of these, leaving five selected features: frame duration, maximum frame duration, frame-duration standard deviation, head-rotation interval and maximum head-rotation interval. The model was trained on 580,065 normal training examples and scores a three-second sliding window of these features as normal or anomalous.</p>
     <div class="story-strip reveal">
       <span>Normal</span><span class="arrow">&rarr;</span>
       <span class="text-violet">Anomalous</span><span class="arrow">&rarr;</span>
@@ -68,40 +68,69 @@
 
 <section class="project-section">
   <div class="page">
-    <h2 id="evaluation">Detection latency by attack intensity</h2>
-    <p>Evaluated against four GPU-based framerate attacks of increasing intensity (larger malicious image payloads loaded into the GPU), requiring a rule of two consecutive anomalous windows before raising a warning. In this evaluation, that choice eliminated observed false positives at the cost of roughly one extra second of delay.</p>
-    <div class="svg-diagram reveal">
-      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of detection latency in seconds across four GPU attack intensities: 542 kilobytes at 9 seconds, 1.06 megabytes at 3 seconds, 1.82 megabytes at 2 seconds, 3.13 megabytes at 4 seconds.">
-        <g font-family="Inter" font-size="11" fill="#9aa7c2">
-          <text x="90" y="205" text-anchor="middle">542 KB</text>
-          <text x="270" y="205" text-anchor="middle">1.06 MB</text>
-          <text x="450" y="205" text-anchor="middle">1.82 MB</text>
-          <text x="630" y="205" text-anchor="middle">3.13 MB</text>
-        </g>
-        <g fill="#57d8ff">
-          <rect x="65" y="20" width="50" height="160"/>
-          <rect x="245" y="127" width="50" height="53"/>
-          <rect x="425" y="145" width="50" height="35"/>
-          <rect x="605" y="109" width="50" height="71"/>
-        </g>
-        <g font-family="Space Grotesk" font-size="14" font-weight="700" fill="#f7f9ff">
-          <text x="90" y="14" text-anchor="middle">9s</text>
-          <text x="270" y="121" text-anchor="middle">3s</text>
-          <text x="450" y="139" text-anchor="middle">2s</text>
-          <text x="630" y="103" text-anchor="middle">4s</text>
-        </g>
-      </svg>
-    </div>
-    <p>F1 scores ranged from 0.97 to 0.99 across the four tested intensities. The reported detection latencies were 9, 3, 2 and 4 seconds respectively. The fastest result, 2 seconds, was observed for the 1.82 MB attack. These results describe controlled experiments, rather than a latency guarantee for other systems or attacks.</p>
+    <h2>Why unsupervised</h2>
+    <p>Isolation Forest requires no prior assumptions about the distribution of monitored parameters, which matters in a domain like VR security where there's limited existing knowledge of which telemetry signals actually indicate an attack. This let the model learn what "normal" looks like for a given VR system without labelled attack data.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
-    <h2>Why unsupervised</h2>
-    <p>Isolation Forest requires no prior assumptions about the distribution of monitored parameters, which matters in a domain like VR security where there's limited existing knowledge of which telemetry signals actually indicate an attack. This let the model learn what "normal" looks like for a given VR system without labelled attack data.</p>
+    <h2>Why Isolation Forest</h2>
+    <p>I compared four unsupervised models using accuracy, F1, detection latency and error counts. Isolation Forest offered the strongest pooled F1 score in the offline evaluation, with three false positives and eleven false negatives across 810 test points, and was selected for integration with the VR warning system.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <caption>Pooled F1 across four offline attack datasets. Source: thesis Table 5.3, p.&nbsp;154. These results do not establish performance on other attacks, devices or applications.</caption>
+        <thead><tr><th scope="col">Model</th><th scope="col" class="num">Pooled F1</th><th scope="col" class="num">False positives</th><th scope="col" class="num">False negatives</th></tr></thead>
+        <tbody>
+          <tr class="is-selected"><td>Isolation Forest</td><td class="num">98.11%</td><td class="num">3</td><td class="num">11</td></tr>
+          <tr><td>One-Class SVM</td><td class="num">85.10%</td><td class="num">0</td><td class="num">97</td></tr>
+          <tr><td>Elliptic Envelope</td><td class="num">83.89%</td><td class="num">98</td><td class="num">33</td></tr>
+          <tr><td>Local Outlier Factor</td><td class="num">22.37%</td><td class="num">31</td><td class="num">323</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
+
+<section class="project-section">
+  <div class="page">
+    <h2 id="evaluation">Offline results by attack</h2>
+    <p>Evaluated against four GPU-based attacks of increasing intensity, each loading a larger image payload into the GPU. Detection latency is the time from the annotated attack onset to the model&rsquo;s first positive prediction.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <caption>Isolation Forest, offline evaluation. Source: thesis Tables 5.2&ndash;5.3, p.&nbsp;154. Accuracy is shown at the precision reported. A reported 0&nbsp;s does not mean zero processing time.</caption>
+        <thead><tr><th scope="col">Attack image size</th><th scope="col" class="num">Accuracy</th><th scope="col" class="num">F1 score</th><th scope="col" class="num">Offline latency</th></tr></thead>
+        <tbody>
+          <tr><td>542 KB</td><td class="num">0.99</td><td class="num">99.01%</td><td class="num">0&nbsp;s</td></tr>
+          <tr><td>1.06 MB</td><td class="num">0.98</td><td class="num">97.67%</td><td class="num">0&nbsp;s</td></tr>
+          <tr><td>1.82 MB</td><td class="num">0.98</td><td class="num">97.35%</td><td class="num">2&nbsp;s</td></tr>
+          <tr><td>3.13 MB</td><td class="num">0.99</td><td class="num">98.51%</td><td class="num">2&nbsp;s</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>These results describe controlled offline experiments. In the separate participant study, the warning appeared a mean of 25.98&nbsp;seconds after attack onset; that measure includes the alert pipeline and is reported on the <a href="human-impact.html">human impact</a> page.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>From detection to warning</h2>
+    <p>I integrated the detector with a Python-to-Unity alert pipeline. Sliding-window processing reduced false-positive triggers, while transmitting positive detections only addressed delays observed when sending both normal and attack outputs. In Unity, the warning appeared on receipt of an alert and was hidden after 25 seconds without a further alert, controlling how long it remained visible.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <caption>Source: thesis pp.&nbsp;145, 154&ndash;155. The 25 seconds is an inactivity timeout measured from the latest alert, not a delay before the warning appears.</caption>
+        <thead><tr><th scope="col">Stage</th><th scope="col">Behaviour</th></tr></thead>
+        <tbody>
+          <tr><td>Feature collection</td><td>A three-second sliding window collected system indicators for detection.</td></tr>
+          <tr><td>Prediction filtering</td><td>Model outputs were represented as 0 (no attack) and 1 (attack). A size-3 sliding window processed these predictions to trigger the warning and reduce false positives.</td></tr>
+          <tr><td>Positive-alert transmission</td><td>The Python-to-Unity path sent positive detections only. Transmitting both 0s and 1s had delayed the warning display.</td></tr>
+          <tr><td>Warning visibility</td><td>Receiving an ALERT displayed the warning. Unity hid it after 25 seconds without a further ALERT, so it did not stay visible indefinitely.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="site-footer">

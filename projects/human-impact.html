@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cyber-Physical Impact of VR Attacks · Blessing Odeleye</title>
-<meta name="description" content="A 48-participant study linking GPU-based framerate attacks to measured VR sickness and evaluating an in-headset security warning.">
+<meta name="description" content="A 48-participant doctoral study of GPU-based attacks in VR, measuring VR sickness and how users responded to an in-headset security warning.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -29,10 +29,10 @@
 <section class="project-hero">
   <div class="page">
     <a class="back-link" href="../index.html#work">&larr; All work</a>
-    <p class="eyebrow">Human factors &middot; VR4Sec Workshop, USENIX SOUPS 2021</p>
+    <p class="eyebrow">Human factors &middot; Doctoral research &middot; University of Greenwich</p>
     <h1>Cyber-Physical Impact of VR Attacks</h1>
     <p class="question">What happens when a cyberattack affects both a machine and the person inside the experience?</p>
-    <p class="summary">A controlled 48-participant study linking framerate degradation from a GPU-based cyberattack to measured VR sickness and user comfort, and evaluating whether an in-headset security warning is accepted without breaking immersion.</p>
+    <p class="summary">I conducted a 48-participant study examining the effects of GPU-based attacks in virtual reality and users&rsquo; responses to an in-headset security warning. Participants completed normal, attack-only and attack-with-warning conditions. Evaluation combined the Virtual Reality Sickness Questionnaire (VRSQ), an IDS questionnaire and timing data.</p>
   </div>
 </section>
 
@@ -53,14 +53,14 @@
 <section class="project-section">
   <div class="page">
     <h2>Two attacks, one goal</h2>
-    <p>A GPU-based attack used a custom C++ malware (delivered as if via a post-exploitation tool such as Meterpreter) that overwhelmed the GPU with long-running OpenGL tasks, hidden from the user, at four configurable intensities. A network-based attack flooded the target with continuous ICMP echo requests, a simple denial-of-service pattern, to disrupt a collaborative VR session over Photon PUN2 networking. Both attacks share the same goal: degrade frame rate enough to cause visual discomfort, screen tearing, and eventually VR sickness.</p>
+    <p>A GPU-based attack used a custom C++ malware (delivered as if via a post-exploitation tool such as Meterpreter) that overwhelmed the GPU with long-running OpenGL tasks, hidden from the user, at four configurable intensities. A network-based attack flooded the target with continuous ICMP echo requests, a simple denial-of-service pattern, to disrupt a collaborative VR session over Photon PUN2 networking. Both attacks share the same goal: degrade frame rate enough to cause visual discomfort, screen tearing, and eventually VR sickness. The participant study described below used the GPU-based attack.</p>
   </div>
 </section>
 
 <section class="project-section">
   <div class="page">
-    <h2>The study</h2>
-    <p>48 participants experienced the induced framerate attack while their telemetry and Virtual Reality Sickness Questionnaire (VRSQ) responses were recorded, using Python and SPSS for both descriptive and inferential statistical analysis of symptom severity.</p>
+    <h2>Research methods</h2>
+    <p>I combined system telemetry, questionnaires, behavioural timing, task-performance measures and thematic analysis. Forty-eight participants completed normal, attack-only and attack-with-warning conditions. Two groups of 24 experienced the attack conditions in opposite orders, allowing me to examine both system behaviour and users&rsquo; responses.</p>
     <div class="story-strip reveal">
       <span>Attack</span><span class="arrow">&rarr;</span>
       <span>XR environment</span><span class="arrow">&rarr;</span>
@@ -72,8 +72,77 @@
 
 <section class="project-section">
   <div class="page">
-    <h2>In-headset warning design</h2>
-    <p>I designed an unobtrusive in-headset threat-visualisation mechanism and evaluated it against a security-warning-design framework, aiming to communicate an active attack without breaking immersion or presence. Participants rated the warning on clarity, timeliness, and whether they understood what action to take. Those ratings fed directly into the reactive-defence design used across the <a href="intrusion-detection.html">intrusion detection</a> and <a href="sun.html">SUN</a> work.</p>
+    <h2>User comfort</h2>
+    <p>VRSQ scores following exposure to the GPU-based attack, across all 48 participants.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <caption>Source: thesis Table 5.10, p.&nbsp;171; N&nbsp;=&nbsp;48. These are questionnaire scores, not percentages of participants. VRSQ has no general severity baseline, so no severity bands are applied.</caption>
+        <thead><tr><th scope="col">VRSQ measure</th><th scope="col" class="num">Mean score</th><th scope="col" class="num">Standard deviation</th></tr></thead>
+        <tbody>
+          <tr><td>Oculomotor symptoms</td><td class="num">28.65</td><td class="num">19.44</td></tr>
+          <tr><td>Disorientation symptoms</td><td class="num">23.61</td><td class="num">21.66</td></tr>
+          <tr><td>Total VR sickness</td><td class="num">26.13</td><td class="num">19.49</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Warning design</h2>
+    <p>I designed the warning using Bauer et al.&rsquo;s Warning Design Guidelines (2013), adapting the risk-assessment approach to the GPU-based attack scenario. The interface communicated the risk in plain language, used a warning icon and a consistent visual hierarchy, and gave the user an action to take. I then used Cranor&rsquo;s Human-in-the-Loop framework (2008) to structure the questionnaire evaluating attention, comprehension, ability to act, perceived timing and relevance.</p>
+    <p>Participants rated the warning&rsquo;s clarity at a mean of 4.48 out of 5 and its timeliness at 4.29 out of 5. These are participant ratings, not objective measurements of detection time.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Detection time and warning time</h2>
+    <p>Two different measurements, which answer different questions and should not be read as one.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <caption>Sources: thesis p.&nbsp;152 and Table 5.2, p.&nbsp;154; pp.&nbsp;190&ndash;192 and Table 5.18. The offline figure is model detection, not end-to-end protection of the user.</caption>
+        <thead><tr><th scope="col">Evaluation</th><th scope="col">What is measured</th><th scope="col">Result</th></tr></thead>
+        <tbody>
+          <tr><td>Offline model</td><td>Annotated attack onset to the model&rsquo;s first positive prediction</td><td>0&ndash;2&nbsp;s across four datasets</td></tr>
+          <tr><td>Participant study</td><td>Attack onset to the warning appearing in the headset</td><td>Mean 25.98&nbsp;s, range 3&ndash;61&nbsp;s, N&nbsp;=&nbsp;48</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>In the participant study, the warning appeared an average of 25.98 seconds after attack onset. Nineteen of 48 participants (39.6%) took the requested action. These findings highlight the importance of evaluating both model detection and users&rsquo; responses to warnings in immersive environments.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>What the warning responses revealed</h2>
+    <p>Twenty-nine of 48 participants ignored the warning. Thematic analysis identified task engagement in 12 of those participants&rsquo; responses and the experimental context in nine. These findings suggest that detecting a threat and displaying a warning do not guarantee that an immersed user will act on it.</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <caption>Study responses. Source: thesis Tables 5.14&ndash;5.16, pp.&nbsp;183&ndash;185. These describe responses inside the experiment, not predictions of behaviour outside it.</caption>
+        <thead><tr><th scope="col">Response to the warning</th><th scope="col" class="num">Participants</th><th scope="col" class="num">Share</th></tr></thead>
+        <tbody>
+          <tr><td>Ignored the warning</td><td class="num">29</td><td class="num">60.4%</td></tr>
+          <tr><td>Followed the instructions immediately</td><td class="num">11</td><td class="num">22.9%</td></tr>
+          <tr><td>Took time to understand before acting</td><td class="num">8</td><td class="num">16.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Limitations and next steps</h2>
+    <p>The study also identified opportunities to improve the warning design, including more prominent placement and future evaluation of audio or haptic feedback. The Meta Quest 2 setup did not provide eye-tracking data. Maintaining the Unity testbed highlighted the compatibility risks of upgrading active XR projects. These limitations inform the next stage of development and evaluation.</p>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="page">
+    <h2>Related publication</h2>
+    <p>Earlier related work on framerate-oriented attacks was published as <a href="https://bura.brunel.ac.uk/handle/2438/23880" target="_blank" rel="noopener">Detecting framerate-oriented cyber attacks on user experience in virtual reality</a> (VR4Sec Workshop, USENIX SOUPS 2021). The study above is part of the doctoral thesis and is reported separately from that paper.</p>
   </div>
 </section>
 </main>

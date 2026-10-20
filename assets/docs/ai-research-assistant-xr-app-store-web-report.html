@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!--
+  Interactive web/grey-literature report template.
+  Filled in by /websearch - see .claude/skills/research-assistant/10-html-reports.md
+
+  Replace each token below, written in the page in square brackets. They are
+  named here without brackets on purpose: a replace-all would otherwise paste the
+  whole report into this comment.
+    TOPIC        - human-readable topic (title and heading)
+    RUN_DATE     - YYYY-MM-DD
+    SCOPE_NOTE   - one paragraph: what was searched, what was excluded, coverage gaps
+    SYNTHESIS    - the actual findings prose (HTML: p, h3, ul, li, strong, em, a, code)
+    SOURCES_JSON - JSON array, schema documented in 10-html-reports.md, with every
+                   "<" written as \u003c so page content cannot end the script block
+
+  Self-contained by design: no CDN, no external fonts, no network calls.
+  Opens from file:// and works offline.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How XR app stores vet apps for privacy and security — Web Sources</title>
+<style>
+  :root {
+    --bg: #fbfbfa; --panel: #fff; --ink: #1a1a18; --muted: #6b6b66;
+    --line: #e3e3df; --accent: #7c4a2d; --accent-soft: #f2e9e3;
+    --core: #2f6b4f; --supporting: #8a6d1f; --peripheral: #6b6b66;
+    --warn-bg: #fdf6e7; --warn-line: #e8d5a3;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a; --panel: #1e1e23; --ink: #eceae6; --muted: #9d9a94;
+      --line: #32323a; --accent: #d99b6c; --accent-soft: #2b2320;
+      --core: #6cc094; --supporting: #d4b45c; --peripheral: #9d9a94;
+      --warn-bg: #2a2418; --warn-line: #5c4c26;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #fbfbfa; --panel: #fff; --ink: #1a1a18; --muted: #6b6b66;
+    --line: #e3e3df; --accent: #7c4a2d; --accent-soft: #f2e9e3;
+    --core: #2f6b4f; --supporting: #8a6d1f; --peripheral: #6b6b66;
+    --warn-bg: #fdf6e7; --warn-line: #e8d5a3;
+  }
+  :root[data-theme="dark"] {
+    --bg: #16161a; --panel: #1e1e23; --ink: #eceae6; --muted: #9d9a94;
+    --line: #32323a; --accent: #d99b6c; --accent-soft: #2b2320;
+    --core: #6cc094; --supporting: #d4b45c; --peripheral: #9d9a94;
+    --warn-bg: #2a2418; --warn-line: #5c4c26;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 60rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.25; margin: 0 0 .5rem; letter-spacing: -.02em; }
+  .sub { color: var(--muted); font-size: .9rem; }
+  h2 { font-size: 1.25rem; margin: 2.5rem 0 .75rem; letter-spacing: -.01em; }
+  h3 { font-size: 1.02rem; margin: 1.5rem 0 .5rem; }
+  a { color: var(--accent); }
+
+  .scope {
+    background: var(--warn-bg); border: 1px solid var(--warn-line);
+    border-radius: var(--radius); padding: .9rem 1.1rem; font-size: .88rem;
+    color: var(--ink); margin-bottom: 1.5rem;
+  }
+  .scope strong { display: block; margin-bottom: .25rem; font-size: .8rem;
+    text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
+  .synthesis p { margin: 0 0 1rem; }
+  .synthesis ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .synthesis li { margin-bottom: .4rem; }
+
+  /* controls */
+  .controls {
+    position: sticky; top: 0; z-index: 5; background: var(--bg);
+    padding: 1rem 0 .85rem; border-bottom: 1px solid var(--line); margin-bottom: 1.25rem;
+  }
+  .searchrow { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+  input[type="search"], select {
+    font: inherit; font-size: .9rem; color: var(--ink); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 8px; padding: .5rem .7rem;
+  }
+  input[type="search"] { flex: 1 1 16rem; min-width: 0; }
+  input[type="search"]:focus-visible, select:focus-visible, .chip:focus-visible, .card h3 button:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .chips { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .7rem; }
+  .chip {
+    font: inherit; font-size: .78rem; cursor: pointer; user-select: none;
+    background: var(--panel); color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem;
+  }
+  .chip[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .count { color: var(--muted); font-size: .82rem; margin-top: .7rem; }
+
+  /* cards */
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 1rem 1.1rem; margin-bottom: .8rem;
+  }
+  .card h3 { margin: 0 0 .35rem; font-size: 1rem; line-height: 1.35; }
+  .card h3 button {
+    all: unset; cursor: pointer; display: block; width: 100%;
+    font-weight: 650; color: var(--ink);
+  }
+  .card h3 button:hover { color: var(--accent); }
+  .meta { display: flex; gap: .45rem; flex-wrap: wrap; align-items: center;
+    font-size: .78rem; color: var(--muted); margin-bottom: .5rem; }
+  .tier { font-weight: 700; }
+  .tier.Core { color: var(--core); }
+  .tier.Supporting { color: var(--supporting); }
+  .tier.Peripheral { color: var(--peripheral); }
+  .badge {
+    font-size: .72rem; padding: .1rem .5rem; border-radius: 999px;
+    border: 1px solid var(--line); white-space: nowrap;
+  }
+  .badge.flag { border-color: var(--warn-line); background: var(--warn-bg); }
+  .dot { opacity: .4; }
+  .summary { font-size: .92rem; margin: 0; }
+  .detail { margin-top: .8rem; padding-top: .8rem; border-top: 1px dashed var(--line); font-size: .88rem; }
+  .detail[hidden] { display: none; }
+  .detail ul { margin: .3rem 0 .8rem; padding-left: 1.1rem; }
+  .detail li { margin-bottom: .3rem; }
+  .caveat { background: var(--warn-bg); border-left: 3px solid var(--warn-line);
+    padding: .5rem .7rem; border-radius: 4px; margin: .5rem 0 .8rem; }
+  .scores { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .78rem; color: var(--muted); }
+  .scores b { color: var(--ink); font-weight: 650; }
+  .visit { display: inline-block; margin-top: .3rem; font-size: .85rem; }
+
+  .empty { color: var(--muted); text-align: center; padding: 2.5rem 1rem; font-size: .9rem; }
+  footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: .8rem; }
+  @media print {
+    .controls { position: static; } .detail[hidden] { display: block !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>How XR app stores vet apps for privacy and security</h1>
+  <div class="sub">Web &amp; grey-literature scan · 2026-10-06</div>
+</header>
+
+<div class="scope">
+  <strong>Search scope &amp; limitations</strong>
+  <p>Five WebSearch queries on 2026-10-06 (Meta Horizon Store review and VRCs, malicious apps and sideloading, visionOS review and enterprise APIs, PICO Store review, and developer discussion of rejections); 13 pages fetched and read, none scored from a search snippet. Excluded: a softhandtech.com article on Quest viruses (generic SEO content, no sources) and an HKBU PDF that is a peer-reviewed study, which belongs to the academic track. Recorded as unfetchable: Meta's 'App Lab tips' blog post (both URLs returned the blog index) and a Meta developer-forum thread on a rejected submission (HTTP 403). Sideloading guides hosted on unrelated domains were treated as spam and not fetched. Gaps: no Apple App Store Review Guidelines or visionOS consumer-store review material surfaced, PICO's review criteria were not found in anything readable, and no source says how Meta's 'data protection checks' work.</p>
+</div>
+
+<section class="synthesis">
+  <h3>Meta publishes what it checks, but not how</h3>
+<p>Of the three stores, Meta is the only one whose material in this scan states the privacy and security criteria
+it reviews against. Its Virtual Reality Check (VRC) guidelines require a privacy policy that explains data collection, data use and deletion requests (<code>VRC.Quest.Privacy.1-4</code>),
+that the team and app "clear data protection checks" (<code>Privacy.5</code>), and that an app request only the permissions it
+needs (<code>Security.2</code>). Meta publishes the test plans it says it reviews against. It does not say who runs them, how
+the data protection checks work, or how often apps fail, and it notes that "outright rejections are rare": a failing
+app goes back as <em>Changes Requested</em>.</p>
+<p>The permission check is the one requirement an independent source corroborates. In Road to VR's 2021 account of a
+developer who published a deliberately empty app on App Lab, App Lab review rejected apps that request permissions
+they do not use, but did not judge scope or quality ("no content curation", in the developer's words). The privacy-policy requirement also appears in
+Callstack's submission guide, but that guide points back to Meta's own documentation, so it is a restatement, not
+independent corroboration.</p>
+
+<h3>Review gates the first release, not later code</h3>
+<p>Meta's "After submission" page says that once an app is released, <strong>app binaries update immediately without
+review</strong>, while metadata changes take 1-2 business days to review. If that is current, the store's code review covers an
+app's first version only. This rests on that one first-party page: nothing else in the scan confirms or qualifies it,
+so it is reported as Meta's own statement, not an established fact about enforcement.</p>
+
+<h3>Apple gates sensors by entitlement and channel, not by review</h3>
+<p>For Vision Pro, the scan found Apple's controls on sensitive capabilities rather than its review process. Main-camera
+access, passthrough in screen capture and similar capabilities each need a managed entitlement plus a license file,
+and are available only to in-house or custom enterprise apps distributed through Apple Business Manager, never the
+public App Store. Passthrough capture also needs the user to press the system broadcast button every time. As
+presented in this session, Apple keeps these capabilities out of the consumer store altogether rather than vetting
+their use app by app; how consumer visionOS apps are reviewed was not covered by anything this scan found.</p>
+
+<h3>PICO: obligations on paper, no published criteria</h3>
+<p>PICO's developer terms prohibit malware, make developers solely responsible for disclosing the permissions an app needs,
+require breach notification within 24 hours, and let PICO remove any app at its discretion. Its FAQ says apps launch
+only "after passing the test" but gives no privacy or security criteria. The obligations are contractual; nothing read
+in this scan shows how, or whether, PICO checks them before release.</p>
+
+<h3>What this scan did not find</h3>
+<ul>
+<li>No independent audit, from any source, of how well any XR store's vetting catches privacy or security problems in practice. That question is in the academic track: empirical studies of Oculus/Meta apps, privacy-policy vetting of VR apps, and multi-store privacy measurement.</li>
+<li>No Apple App Store Review Guidelines or visionOS consumer-review material surfaced from these searches.</li>
+<li>No description of what Meta's "data protection checks" involve, or of any automated scanning of submitted binaries.</li>
+<li>Meta's agent tools for pre-submission checks (<code>hz-vrc-check</code>, <code>hz-store-submit</code>) describe their scope but list no checks.</li>
+</ul>
+</section>
+
+<h2>Sources</h2>
+
+<div class="controls">
+  <div class="searchrow">
+    <input type="search" id="q" placeholder="Filter by title, author, site, or summary…" aria-label="Filter sources">
+    <select id="sort" aria-label="Sort sources">
+      <option value="score">Sort: score</option>
+      <option value="date">Sort: newest</option>
+      <option value="authority">Sort: authority</option>
+      <option value="evidence">Sort: evidence</option>
+    </select>
+  </div>
+  <div class="chips" id="tierChips" role="group" aria-label="Filter by tier"></div>
+  <div class="chips" id="typeChips" role="group" aria-label="Filter by content type"></div>
+  <div class="count" id="count" role="status" aria-live="polite"></div>
+</div>
+
+<div id="list"></div>
+
+<footer>
+  Generated by <strong>/websearch</strong> · scored per <code>09-web-source-evaluation.md</code>.
+  Grey literature is not peer reviewed: tiers here are not equivalent to those in a
+  <code>/synthesize</code> report. Independence labels are shown on every card —
+  <em>first-party</em> and <em>vendor-competitive</em> sources may still be the best
+  available, but their comparative claims are attributed, not asserted.
+</footer>
+
+</div>
+
+<script id="data" type="application/json">
+[
+ {
+  "title": "Meta Quest Virtual Reality Check (VRC) guidelines",
+  "url": "https://developers.meta.com/horizon/resources/publish-quest-req",
+  "author": null,
+  "site": "developers.meta.com",
+  "date": "2026-08-19",
+  "type": "official-docs",
+  "tier": "Core",
+  "score": 87,
+  "scores": {
+   "relevance": 92,
+   "authority": 90,
+   "evidence": 70,
+   "recency": 95
+  },
+  "independence": "first-party",
+  "summary": "Meta's published checklist that Meta Horizon Store submissions are tested against, including the privacy and security checks.",
+  "keyPoints": [
+   "VRC.Quest.Privacy.1-4: the privacy policy URL must link to a statement the app's team manages, and must clearly explain data collection, data use and how users request deletion.",
+   "VRC.Quest.Privacy.5: the team and app must clear data protection checks; the page does not say what those checks are.",
+   "VRC.Quest.Security.2: the app must request the minimum permissions it needs and may not include unsupported ones.",
+   "Downloadable test plans give 'the exact criteria we use to test your app'; who tests, and how, is not stated."
+  ],
+  "caveat": "First-party description of Meta's own process; the page states the criteria but not how review is carried out or how often apps fail."
+ },
+ {
+  "title": "After submission",
+  "url": "https://prod.developers.meta.com/horizon/resources/publish-after-sub",
+  "author": null,
+  "site": "developers.meta.com",
+  "date": "2024-09-23",
+  "type": "official-docs",
+  "tier": "Core",
+  "score": 78,
+  "scores": {
+   "relevance": 85,
+   "authority": 90,
+   "evidence": 65,
+   "recency": 70
+  },
+  "independence": "first-party",
+  "summary": "What happens to a Meta Horizon Store submission after upload: statuses, review against the VRCs, and which later changes are reviewed.",
+  "keyPoints": [
+   "Statuses run Submitted, Under Review, Changes Requested, Approved, Released; 'Outright rejections are rare'.",
+   "The Meta Horizon Store team verifies conformance to the Quest VRC guidelines; failures return as Changes Requested with an explanation.",
+   "After release, app binaries update immediately without review; metadata changes are reviewed in 1-2 business days."
+  ],
+  "caveat": "The binary-update statement rests on this one first-party page; no source in this scan confirms or contradicts it."
+ },
+ {
+  "title": "Introducing enterprise APIs for visionOS",
+  "url": "https://developer.apple.com/videos/play/wwdc2024/10139/",
+  "author": "Kyle McEachern",
+  "site": "developer.apple.com",
+  "date": null,
+  "type": "talk-writeup",
+  "tier": "Core",
+  "score": 73,
+  "scores": {
+   "relevance": 72,
+   "authority": 92,
+   "evidence": 75,
+   "recency": 50
+  },
+  "independence": "first-party",
+  "summary": "WWDC24 session on how Apple gates main-camera access and other sensitive Vision Pro capabilities: by entitlement and distribution channel rather than by store review.",
+  "keyPoints": [
+   "Each capability needs a managed entitlement plus a license file tied to the developer account (e.g. main-camera-access.allow).",
+   "The entitlements are only for in-house or custom enterprise apps distributed privately through Apple Business Manager, not the public App Store.",
+   "Passthrough capture requires the user to press the system 'start broadcast' button each time; main-camera use also asks for user authorization."
+  ],
+  "caveat": "Presented at WWDC24, but the page carries no date, so Recency is capped under the rubric. It covers capability gating, not App Store review."
+ },
+ {
+  "title": "Pico App Developer Terms",
+  "url": "https://developer.picoxr.com/terms",
+  "author": null,
+  "site": "developer.picoxr.com",
+  "date": "2024-12-12",
+  "type": "official-docs",
+  "tier": "Core",
+  "score": 72,
+  "scores": {
+   "relevance": 70,
+   "authority": 85,
+   "evidence": 60,
+   "recency": 72
+  },
+  "independence": "first-party",
+  "summary": "PICO's developer contract: what developers must guarantee about malware, permissions and user data, and PICO's right to remove apps.",
+  "keyPoints": [
+   "Section 3.4(viii) prohibits files containing viruses, trojans, worms, logic bombs or other malicious material.",
+   "Section 5.2 makes the developer solely responsible for accurately disclosing the permissions the app needs.",
+   "Section 11 requires breach notification to PICO within 24 hours and compliance with Singapore's PDPA.",
+   "Section 4.2(vii) lets PICO remove, block or delete any app at its sole discretion; no review procedure is described."
+  ],
+  "caveat": "Contractual obligations placed on developers, not evidence of how PICO checks them."
+ },
+ {
+  "title": "'The Unity Cube' is the Worst Quest Game on Oculus App Lab - on Purpose",
+  "url": "https://roadtovr.com/?p=170354",
+  "author": "Ben Lang",
+  "site": "roadtovr.com",
+  "date": "2021-04-06",
+  "type": "news",
+  "tier": "Supporting",
+  "score": 64,
+  "scores": {
+   "relevance": 70,
+   "authority": 72,
+   "evidence": 62,
+   "recency": 45
+  },
+  "independence": "independent",
+  "summary": "A developer published a deliberately empty app (one grey cube) to test what App Lab review actually checked.",
+  "keyPoints": [
+   "Meta checked technical requirements, content guidelines, store-page assets and unused permission requests.",
+   "It did not judge scope or quality; the developer concluded there was 'no content curation'.",
+   "The submission took 5-6 weeks: rejected for technical reasons, then approved 4-5 days after resubmission."
+  ],
+  "caveat": "One developer's 2021 experiment on App Lab; Meta's process may have changed since."
+ },
+ {
+  "title": "Submitting (React Native for Meta Horizon OS)",
+  "url": "https://oss.callstack.com/react-native-meta-horizon-os/docs/guides/releasing/submitting",
+  "author": null,
+  "site": "oss.callstack.com",
+  "date": null,
+  "type": "tutorial",
+  "tier": "Supporting",
+  "score": 57,
+  "scores": {
+   "relevance": 60,
+   "authority": 60,
+   "evidence": 55,
+   "recency": 50
+  },
+  "independence": "unclear",
+  "summary": "A third-party walkthrough of submitting a React Native app to the Meta Horizon Store.",
+  "keyPoints": [
+   "Lists regulatory steps (privacy policy, content ratings) before build upload and review.",
+   "States that review 'Can take up to two weeks'.",
+   "Points to Meta's VRC guidelines for privacy expectations rather than describing them."
+  ],
+  "caveat": "Published by the maintainers of a framework for Meta's platform; their relationship to Meta is not stated on the page, and its steps restate Meta's own documentation."
+ },
+ {
+  "title": "Developer Platform FAQ (Chapter 28)",
+  "url": "https://sdk.picovr.com/docs/FAQ/chapter_twentyeight.html",
+  "author": null,
+  "site": "sdk.picovr.com",
+  "date": null,
+  "type": "official-docs",
+  "tier": "Supporting",
+  "score": 55,
+  "scores": {
+   "relevance": 55,
+   "authority": 80,
+   "evidence": 40,
+   "recency": 40
+  },
+  "independence": "first-party",
+  "summary": "PICO's FAQ on getting an app onto the PICO Store: agreement, device selection and testing.",
+  "keyPoints": [
+   "Apps 'only can be launched after passing the test', after the developer signs an agreement.",
+   "Delays and test failures are escalated to business or operation contacts.",
+   "No privacy, security or permission criteria are given."
+  ],
+  "caveat": "Versioned documentation (v2.2.2, 2015-2022) with no page date; describes the process, not the criteria."
+ },
+ {
+  "title": "hz-vrc-check",
+  "url": "https://skills.sh/meta-quest/agentic-tools/hz-vrc-check",
+  "author": null,
+  "site": "skills.sh",
+  "date": null,
+  "type": "official-docs",
+  "tier": "Supporting",
+  "score": 51,
+  "scores": {
+   "relevance": 50,
+   "authority": 70,
+   "evidence": 35,
+   "recency": 50
+  },
+  "independence": "first-party",
+  "summary": "A Meta-published agent skill for checking an app against the VRCs before submission.",
+  "keyPoints": [
+   "Covers project configuration, code review, VRC compliance, content policies, data use and store assets.",
+   "Intended for auditing manifests and permissions before upload and investigating 'Changes Requested' rejections.",
+   "The page lists no individual checks."
+  ],
+  "caveat": "Describes a self-check tool's scope only; no criteria or results."
+ },
+ {
+  "title": "Store Submission Skill (hz-store-submit)",
+  "url": "https://skills.sh/meta-quest/agentic-tools/hz-store-submit",
+  "author": null,
+  "site": "skills.sh",
+  "date": null,
+  "type": "official-docs",
+  "tier": "Supporting",
+  "score": 50,
+  "scores": {
+   "relevance": 45,
+   "authority": 70,
+   "evidence": 35,
+   "recency": 50
+  },
+  "independence": "first-party",
+  "summary": "A Meta-published agent skill that automates Meta Horizon Store submission, running VRC validation inline.",
+  "keyPoints": [
+   "Validates the APK against store publishing standards and runs VRC validation before submitting.",
+   "Tracks submissions through review and helps resolve rejections.",
+   "No privacy, data-use or security specifics on the page."
+  ],
+  "caveat": "Describes a tool's scope only."
+ }
+]
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var raw = document.getElementById("data").textContent;
+  var SOURCES = [];
+  try { SOURCES = JSON.parse(raw) || []; }
+  catch (e) {
+    document.getElementById("list").innerHTML =
+      '<div class="empty">Source data failed to parse — the JSON block is malformed.</div>';
+    return;
+  }
+
+  var TIERS = ["Core", "Supporting", "Peripheral"];
+  var state = { q: "", tiers: new Set(), types: new Set(), sort: "score" };
+
+  var listEl  = document.getElementById("list");
+  var countEl = document.getElementById("count");
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function chip(parent, label, set, value) {
+    var b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.textContent = label;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      if (set.has(value)) { set.delete(value); b.setAttribute("aria-pressed", "false"); }
+      else { set.add(value); b.setAttribute("aria-pressed", "true"); }
+      render();
+    });
+    parent.appendChild(b);
+  }
+
+  var tierWrap = document.getElementById("tierChips");
+  TIERS.forEach(function (t) {
+    if (SOURCES.some(function (s) { return s.tier === t; })) chip(tierWrap, t, state.tiers, t);
+  });
+
+  var typeWrap = document.getElementById("typeChips");
+  var types = [];
+  SOURCES.forEach(function (s) { if (s.type && types.indexOf(s.type) < 0) types.push(s.type); });
+  types.sort().forEach(function (t) { chip(typeWrap, t, state.types, t); });
+
+  document.getElementById("q").addEventListener("input", function (e) {
+    state.q = e.target.value.toLowerCase().trim(); render();
+  });
+  document.getElementById("sort").addEventListener("change", function (e) {
+    state.sort = e.target.value; render();
+  });
+
+  function matches(s) {
+    if (state.tiers.size && !state.tiers.has(s.tier)) return false;
+    if (state.types.size && !state.types.has(s.type)) return false;
+    if (!state.q) return true;
+    var hay = [s.title, s.author, s.site, s.summary, s.type].join(" ").toLowerCase();
+    return hay.indexOf(state.q) >= 0;
+  }
+
+  function sorter(a, b) {
+    if (state.sort === "date") return String(b.date || "").localeCompare(String(a.date || ""));
+    if (state.sort === "authority") return (b.scores && b.scores.authority || 0) - (a.scores && a.scores.authority || 0);
+    if (state.sort === "evidence") return (b.scores && b.scores.evidence || 0) - (a.scores && a.scores.evidence || 0);
+    return (b.score || 0) - (a.score || 0);
+  }
+
+  function card(s, i) {
+    var el = document.createElement("article");
+    el.className = "card";
+    var sc = s.scores || {};
+    var flagged = s.independence === "vendor-competitive" || s.independence === "sponsored" || s.independence === "unclear";
+    var dateTxt = s.date ? esc(s.date) : "undated";
+
+    var pts = (s.keyPoints || []).map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("");
+
+    el.innerHTML =
+      '<h3><button type="button" aria-expanded="false" aria-controls="d' + i + '">' + esc(s.title) + "</button></h3>" +
+      '<div class="meta">' +
+        '<span class="tier ' + esc(s.tier) + '">' + esc(s.tier) + " · " + (Number(s.score) || 0) + "</span>" +
+        '<span class="dot">·</span><span>' + esc(s.site || "unknown site") + "</span>" +
+        '<span class="dot">·</span><span>' + esc(s.author || "no named author") + "</span>" +
+        '<span class="dot">·</span><span>' + dateTxt + "</span>" +
+        '<span class="badge">' + esc(s.type || "unclassified") + "</span>" +
+        '<span class="badge' + (flagged ? " flag" : "") + '">' + esc(s.independence || "unclear") + "</span>" +
+      "</div>" +
+      '<p class="summary">' + esc(s.summary) + "</p>" +
+      '<div class="detail" id="d' + i + '" hidden>' +
+        (s.caveat ? '<div class="caveat">' + esc(s.caveat) + "</div>" : "") +
+        (pts ? "<ul>" + pts + "</ul>" : "") +
+        '<div class="scores">' +
+          "<span>Relevance <b>" + (sc.relevance || 0) + "</b></span>" +
+          "<span>Authority <b>" + (sc.authority || 0) + "</b></span>" +
+          "<span>Evidence <b>" + (sc.evidence || 0) + "</b></span>" +
+          "<span>Recency <b>" + (sc.recency || 0) + "</b></span>" +
+        "</div>" +
+        (/^https?:\/\//i.test(s.url || "")
+          ? '<a class="visit" href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">Open source ↗</a>'
+          : '<span class="visit">No http(s) link recorded</span>') +
+      "</div>";
+
+    var btn = el.querySelector("h3 button");
+    var det = el.querySelector(".detail");
+    btn.addEventListener("click", function () {
+      var open = det.hasAttribute("hidden");
+      if (open) { det.removeAttribute("hidden"); } else { det.setAttribute("hidden", ""); }
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    return el;
+  }
+
+  function render() {
+    var rows = SOURCES.filter(matches).sort(sorter);
+    listEl.innerHTML = "";
+    if (!rows.length) {
+      listEl.innerHTML = '<div class="empty">No sources match these filters.</div>';
+    } else {
+      rows.forEach(function (s, i) { listEl.appendChild(card(s, i)); });
+    }
+    var n = SOURCES.length;
+    countEl.textContent = rows.length === n
+      ? n + " source" + (n === 1 ? "" : "s")
+      : "Showing " + rows.length + " of " + n + " sources";
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

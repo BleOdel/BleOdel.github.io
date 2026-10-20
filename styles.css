@@ -436,6 +436,9 @@ p.lede{
 .project-hero .summary{font-size:15.5px; line-height:1.75; color:var(--muted); max-width:64ch; margin:0;}
 .project-meta{display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:24px; font-size:13px; color:var(--muted-dim);}
 .project-meta strong{color:var(--muted); font-weight:600;}
+.project-meta a{color:var(--cyan); text-decoration:underline; text-decoration-color:rgba(87,216,255,.4); text-underline-offset:2px; overflow-wrap:anywhere;}
+.project-meta a:hover{text-decoration-color:var(--cyan);}
+.project-meta a:focus-visible{outline:2px solid var(--cyan); outline-offset:2px;}
 
 .project-section{padding:44px 0; border-top:1px solid var(--line);}
 .project-section h2{
